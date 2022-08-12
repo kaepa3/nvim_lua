@@ -18,6 +18,13 @@ require'packer'.startup(function()
     }
     use 'hrsh7th/nvim-cmp'
     use 'hrsh7th/cmp-nvim-lsp'
+    --html
+    use {
+        'mattn/emmet-vim',
+        ft='html',
+        opt=true
+    }
+
 end)
 vim.cmd([[autocmd BufWritePost init.lua source <afile> | PackerCompile]])
 

@@ -33,7 +33,7 @@ vim.o.list  = true
 
 
 -- クリップボード
-vim.o.clipboard=unnamedk
+vim.o.clipboard = "unnamedplus"
 --syntax on
 -- 行末のスペースを可視化
 --vim.o.listchars=tab:^\ ,trail:~
