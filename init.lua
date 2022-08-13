@@ -43,3 +43,6 @@ vim.o.clipboard = "unnamedplus"
 ---------------------->configvim
 
 require'keymapping'
+
+require'snip'
+require'snipgo'
