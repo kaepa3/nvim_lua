@@ -46,3 +46,4 @@ require'keymapping'
 
 require'snip'
 require'snipgo'
+require'sniphtml'
