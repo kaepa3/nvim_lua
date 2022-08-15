@@ -1,86 +1,110 @@
-vim.cmd [[packadd packer.nvim]]
+vim.cmd([[packadd packer.nvim]])
 
-require 'packer'.startup(function()
-  use 'wbthomason/packer.nvim'
-  use 'tpope/vim-fugitive'
-  use 'tpope/vim-repeat'
+require("packer").startup(function()
+  use("wbthomason/packer.nvim")
+  use("tpope/vim-fugitive")
+  use("tpope/vim-repeat")
+
   --common
-  use { 'machakann/vim-sandwich' }
-  use {
+  use({ "machakann/vim-sandwich" })
+  use({
     "windwp/nvim-autopairs",
-    config = function() require("nvim-autopairs").setup {} end
-  }
-  use { 'kaepa3/swpclear' }
-  use {
-    'nvim-lualine/lualine.nvim',
-    requires = { 'kyazdani42/nvim-web-devicons', opt = true }
-  }
+    config = function()
+      require("nvim-autopairs").setup({})
+    end,
+  })
+  use({ "kaepa3/swpclear" })
+  use({
+    "nvim-lualine/lualine.nvim",
+    requires = { "kyazdani42/nvim-web-devicons", opt = true },
+  })
   --style
-  use {
-    'nvim-telescope/telescope.nvim', tag = '0.1.0',
-    requires = { { 'nvim-lua/plenary.nvim' } }
-  }
-  use "EdenEast/nightfox.nvim"
+  use({
+    "nvim-telescope/telescope.nvim",
+    tag = "0.1.0",
+    requires = { { "nvim-lua/plenary.nvim" } },
+  })
+  use("EdenEast/nightfox.nvim")
   --lsp
-  use 'neovim/nvim-lspconfig'
-  use { 'williamboman/mason.nvim' }
-  use { 'williamboman/mason-lspconfig.nvim' }
-  use {
+  use("neovim/nvim-lspconfig")
+  use({ "williamboman/mason.nvim" })
+  use({ "williamboman/mason-lspconfig.nvim" })
+  use({
     "williamboman/nvim-lsp-installer",
-  }
-  use {
-    'hrsh7th/nvim-cmp',
+  })
+  use({
+    "hrsh7th/nvim-cmp",
     requires = {
-      { 'L3MON4D3/LuaSnip' },
-      { 'saadparwaiz1/cmp_luasnip' }
-    }
-  }
-  use 'hrsh7th/cmp-nvim-lsp'
-  use {
-    'jose-elias-alvarez/null-ls.nvim',
-    requires = 'nvim-lua/plenary.nvim'
-  }
+      { "L3MON4D3/LuaSnip" },
+      { "saadparwaiz1/cmp_luasnip" },
+    },
+  })
+  use("hrsh7th/cmp-nvim-lsp")
+  use({
+    "jose-elias-alvarez/null-ls.nvim",
+    requires = "nvim-lua/plenary.nvim",
+  })
   --html
-  use {
-    'mattn/emmet-vim',
-    ft = 'html',
-    opt = true
-  }
+  use({
+    "mattn/emmet-vim",
+    ft = "html",
+    opt = true,
+  })
   --markdown
-  use 'tyru/open-browser.vim'
-  use 'previm/previm'
-
+  use("tyru/open-browser.vim")
+  use("previm/previm")
 end)
 vim.cmd([[autocmd BufWritePost init.lua source <afile> | PackerCompile]])
 
 --style
 vim.cmd("colorscheme nightfox")
-require('lualine').setup()
+require("lualine").setup()
 
 --lsp
-require("mason").setup()
-require("mason-lspconfig").setup()
-require("mason-lspconfig").setup_handlers {
-  function(server_name) -- default handler (optional)
-    require("lspconfig")[server_name].setup {
-      on_attach = on_attach
-    }
-  end,
-}
+
+local on_attach = function(client, bufnr)
+  client.server_capabilities.document_formatting = false
+  client.server_capabilities.document_range_formatting = false
+end
+
 local capabilities = vim.lsp.protocol.make_client_capabilities()
 capabilities = require("cmp_nvim_lsp").update_capabilities(capabilities)
-local lspconfig = require('lspconfig')
-lspconfig.cssls.setup {
-  capabilities = capabilities
-}
-lspconfig.html.setup {
-  capabilities = capabilities
-}
+
+require("mason").setup()
+require("mason-lspconfig").setup()
+require("mason-lspconfig").setup_handlers({
+  function(server_name) -- default handler (optional)
+    require("lspconfig")[server_name].setup({
+      on_attach = on_attach,
+      capabilities = capabilities,
+    })
+  end,
+})
+--local lspconfig = require("lspconfig")
+--lspconfig.cssls.setup({
+--	capabilities = capabilities,
+--})
+--lspconfig.html.setup({
+--	capabilities = capabilities,
+--})
+--
+--lspconfig.sumneko_lua.setup({
+--  capabilities = capabilities,
+--  -- disable sumneko_lua formatting in favour of null-ls/stylua
+--  on_attach = function(client)
+--  end,
+--})
+--
 
 local null_ls = require("null-ls")
 null_ls.setup({
   sources = {
-    null_ls.builtins.formatting.prettier
+    null_ls.builtins.formatting.prettier,
+    null_ls.builtins.formatting.stylua.with {
+      condition = function(utils)
+        return utils.has_file { ".lua" }
+      end,
+    },
   },
 })
 
@@ -89,7 +113,7 @@ local cmp = require("cmp")
 cmp.setup({
   snippet = {
     expand = function(args)
-      require('luasnip').lsp_expand(args.body)
+      require("luasnip").lsp_expand(args.body)
     end,
   },
   sources = {
@@ -100,9 +124,9 @@ cmp.setup({
   mapping = cmp.mapping.preset.insert({
     ["<C-p>"] = cmp.mapping.select_prev_item(),
     ["<C-n>"] = cmp.mapping.select_next_item(),
-    ['<C-l>'] = cmp.mapping.complete(),
-    ['<C-e>'] = cmp.mapping.abort(),
-    ["<CR>"] = cmp.mapping.confirm { select = true },
+    ["<C-l>"] = cmp.mapping.complete(),
+    ["<C-e>"] = cmp.mapping.abort(),
+    ["<CR>"] = cmp.mapping.confirm({ select = true }),
   }),
   experimental = {
     ghost_text = true,
@@ -123,5 +147,5 @@ function go_org_imports(wait_ms)
   end
 end
 
-vim.cmd [[ autocmd BufWritePre *.go lua go_org_imports(1000) ]]
+vim.cmd([[ autocmd BufWritePre *.go lua go_org_imports(1000) ]])
 --> lsp
