@@ -1,4 +1,4 @@
-require 'plugins'
+require("plugins")
 
 --config--vim
 vim.o.virtualedit = block
@@ -10,8 +10,6 @@ vim.o.laststatus = 2
 vim.o.hlsearch = true
 vim.o.ignorecase = true
 vim.o.smartcase = true
-
-
 
 vim.o.expandtab = true
 vim.o.tabstop = 4
@@ -26,14 +24,14 @@ vim.o.wildmenu = true
 vim.o.cursorline = true
 
 -- マウス有効
-vim.cmd('set mouse=a')
+vim.cmd("set mouse=a")
 
 -- theme
 vim.o.list = true
 
-
 -- クリップボード
 vim.o.clipboard = "unnamedplus"
+
 --syntax on
 -- 行末のスペースを可視化
 --vim.o.listchars=tab:^\ ,trail:~
@@ -42,9 +40,9 @@ vim.o.clipboard = "unnamedplus"
 --filetype plugin indent on
 ---------------------->configvim
 
-require 'keymapping'
+require("keymapping")
 
-require 'snip'
-require 'snipgo'
-require 'sniphtml'
-require 'lua-snip'
+require("snip")
+require("snipgo")
+require("sniphtml")
+require("lua-snip")
