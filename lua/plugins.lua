@@ -13,7 +13,6 @@ require("packer").startup(function()
       require("nvim-autopairs").setup({})
     end,
   })
-  use({ "kaepa3/swpclear" })
   use({
     "nvim-lualine/lualine.nvim",
     requires = { "kyazdani42/nvim-web-devicons", opt = true },
@@ -62,9 +61,9 @@ require("lualine").setup()
 
 --lsp
 
-local on_attach = function(client, bufnr)
-  client.server_capabilities.document_formatting = false
-  client.server_capabilities.document_range_formatting = false
+local on_attach_lua = function(client, bufnr)
+  if client.server_name == "sumneko_lua" then
+  end
 end
 
 local capabilities = vim.lsp.protocol.make_client_capabilities()
@@ -74,37 +73,33 @@ require("mason").setup()
 require("mason-lspconfig").setup()
 require("mason-lspconfig").setup_handlers({
   function(server_name) -- default handler (optional)
-    require("lspconfig")[server_name].setup({
-      on_attach = on_attach,
-      capabilities = capabilities,
-    })
+    if server_name == "sumneko_lua" then
+      require("lspconfig")[server_name].setup({
+        capabilities = capabilities,
+        on_attach = on_attach_lua,
+      })
+    else
+      require("lspconfig")[server_name].setup({
+        capabilities = capabilities,
+        on_attach = on_attach,
+      })
+    end
   end,
 })
---local lspconfig = require("lspconfig")
---lspconfig.cssls.setup({
---	capabilities = capabilities,
---})
---lspconfig.html.setup({
---	capabilities = capabilities,
---})
---
---lspconfig.sumneko_lua.setup({
---  capabilities = capabilities,
---  -- disable sumneko_lua formatting in favour of null-ls/stylua
---  on_attach = function(client)
---  end,
---})
---
 
 local null_ls = require("null-ls")
 null_ls.setup({
   sources = {
-    null_ls.builtins.formatting.prettier,
-    null_ls.builtins.formatting.stylua.with {
+    null_ls.builtins.formatting.stylua.with({
       condition = function(utils)
-        return utils.has_file { ".lua" }
+        return utils.root_has_file(".stylua.toml")
       end,
-    },
+    }),
+    null_ls.builtins.formatting.prettier.with({
+      condition = function(utils)
+        return utils.root_has_file(".hoge.toml")
+      end,
+    }),
   },
 })
 
