@@ -61,11 +61,6 @@ require("lualine").setup()
 
 --lsp
 
-local on_attach_lua = function(client, bufnr)
-  if client.server_name == "sumneko_lua" then
-  end
-end
-
 local capabilities = vim.lsp.protocol.make_client_capabilities()
 capabilities = require("cmp_nvim_lsp").update_capabilities(capabilities)
 
@@ -76,7 +71,7 @@ require("mason-lspconfig").setup_handlers({
     if server_name == "sumneko_lua" then
       require("lspconfig")[server_name].setup({
         capabilities = capabilities,
-        on_attach = on_attach_lua,
+        on_attach = on_attach,
       })
     else
       require("lspconfig")[server_name].setup({
@@ -90,17 +85,13 @@ require("mason-lspconfig").setup_handlers({
 local null_ls = require("null-ls")
 null_ls.setup({
   sources = {
-    null_ls.builtins.formatting.stylua.with({
-      condition = function(utils)
-        return utils.root_has_file(".stylua.toml")
-      end,
-    }),
-    null_ls.builtins.formatting.prettier.with({
-      condition = function(utils)
-        return utils.root_has_file(".hoge.toml")
-      end,
-    }),
+    null_ls.builtins.formatting.stylua,
+    null_ls.builtins.formatting.prettier,
   },
+})
+
+require('nvim-autopairs').setup({
+  disable_filetype = { "TelescopePrompt" , "vim" },
 })
 
 -- 3. completion (hrsh7th/nvim-cmp)
