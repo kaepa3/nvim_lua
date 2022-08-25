@@ -1,4 +1,4 @@
-local ls = require 'luasnip'
+local ls = require("luasnip")
 local s = ls.s
 local sn = ls.sn
 local t = ls.t
@@ -13,27 +13,25 @@ ls.add_snippets("all", {
         t({ "Sample Text!" }),
         i(1),
     }),
-    s(
-        { trig = "arg", regTrig = true },
-        {
-            f(function(args)
-                return { "Still only counts as text!!" .. string.format("%s", type(args)) }
-            end, {}),
-            i(0),
-            t({ "Sample Text!" }),
-            i(1),
-        }
-    ),
-    s({ trig = 'isel2' }, {
-        i(1, { "hoge", "fuga" }), i(0),
+    s({ trig = "arg", regTrig = true }, {
+        f(function(args)
+            return { "Still only counts as text!!" .. string.format("%s", type(args)) }
+        end, {}),
+        i(0),
+        t({ "Sample Text!" }),
+        i(1),
     }),
-    s({ trig = 'b(%d)', regTrig = true, wordTrig = true }, {
-        f(function(_,snip)
+    s({ trig = "isel2" }, {
+        i(1, { "hoge", "fuga" }),
+        i(0),
+    }),
+    s({ trig = "b(%d)", regTrig = true, wordTrig = true }, {
+        f(function(_, snip)
             return {
-                "Captured Text: " .. snip.captures[1] .. '.'
+                "Captured Text: " .. snip.captures[1] .. ".",
             }
         end, {}),
-        i(0)
+        i(0),
     }),
 })
 
