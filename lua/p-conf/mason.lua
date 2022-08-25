@@ -1,3 +1,4 @@
+local capabilities = vim.lsp.protocol.make_client_capabilities()
 require("mason").setup()
 require("mason-lspconfig").setup()
 require("mason-lspconfig").setup_handlers({
