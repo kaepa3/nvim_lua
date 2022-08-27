@@ -6,6 +6,7 @@ require("packer").startup(function()
     use("tpope/vim-repeat")
 
     --common
+    use({ "simeji/winresizer" })
     use({ "kaepa3/swpclear" })
     use({ "machakann/vim-sandwich" })
     use({
