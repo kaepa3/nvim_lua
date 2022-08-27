@@ -76,7 +76,6 @@ vim.cmd("colorscheme nightfox")
 require("lualine").setup()
 
 --lsp
-require("p-conf/cmp_nvim_lsp")
 require("p-conf/mason")
 require("p-conf/null-ls")
 require("p-conf.cmp")

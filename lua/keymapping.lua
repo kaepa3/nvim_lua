@@ -5,7 +5,7 @@ local lspinstaller = require 'nvim-lsp-installer'
 lspinstaller.setup {}
 
 --general
-vim.keymap.set("i", "<silent><C-n>", "<ESC>o")
+vim.keymap.set("i", "<C-o>", "<ESC>o")
 
 --lsp
 vim.keymap.set("n", "<C-j>", "<cmd>lua vim.lsp.buf.definition()<CR>")
@@ -47,6 +47,7 @@ vim.api.nvim_set_keymap(
   { expr = true, silent = true }
 )
 
+
 function go_org_imports(wait_ms)
     local params = vim.lsp.util.make_range_params()
     params.context = { only = { "source.organizeImports" } }
@@ -63,4 +64,8 @@ function go_org_imports(wait_ms)
 end
 
 vim.cmd([[ autocmd BufWritePre *.go lua go_org_imports(1000) ]])
+
+
+
+
 
