@@ -31,6 +31,8 @@ vim.o.list = true
 
 -- クリップボード
 vim.o.clipboard = "unnamedplus"
+-- コマンド表示は基本しない
+vim.o.cmdheight=0
 
 --syntax on
 -- 行末のスペースを可視化

@@ -10,7 +10,7 @@ vim.keymap.set("i", "<C-o>", "<ESC>o")
 --lsp
 vim.keymap.set("n", "<C-j>", "<cmd>lua vim.lsp.buf.definition()<CR>")
 vim.keymap.set('n', '<C-k>', '<cmd>lua vim.lsp.buf.format({async=true})<CR>')
-vim.keymap.set("n", "<leader>r", "<cmd>lua vim.lsp.bur.rename()<CR>")
+vim.keymap.set("n", "<leader>r", "<cmd>lua vim.lsp.buf.rename()<CR>")
 
 --telescope
 vim.keymap.set("n", "<leader>t", "<cmd>Telescope<CR>")
