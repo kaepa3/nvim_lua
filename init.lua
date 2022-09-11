@@ -32,8 +32,9 @@ vim.o.list = true
 -- クリップボード
 vim.o.clipboard = "unnamedplus"
 -- コマンド表示は基本しない
-vim.o.cmdheight=0
+vim.o.cmdheight = 0
 
+vim.cmd([[autocmd BufWritePre * lua vim.lsp.buf.format()]])
 --syntax on
 -- 行末のスペースを可視化
 --vim.o.listchars=tab:^\ ,trail:~
@@ -43,7 +44,6 @@ vim.o.cmdheight=0
 ---------------------->configvim
 
 require("keymapping")
-
 require("snip")
 require("snipgo")
 require("sniphtml")
