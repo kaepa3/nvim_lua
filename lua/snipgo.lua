@@ -1,4 +1,4 @@
-local ls = require 'luasnip'
+local ls = require("luasnip")
 local s = ls.s
 local sn = ls.sn
 local t = ls.t
@@ -8,9 +8,9 @@ local c = ls.c
 local d = ls.d
 
 ls.add_snippets("go", {
-    s("mm", {
+    s("main", {
         t({ "package main" }),
-        t({ "", "func main(){",""}),
+        t({ "", "func main(){", "" }),
         i(0, "write func"),
         t({ "", "}" }),
     }),

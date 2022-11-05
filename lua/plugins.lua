@@ -6,6 +6,7 @@ require("packer").startup(function()
     use("tpope/vim-repeat")
 
     --common
+    use({ "kaepa3/timer.nvim" })
     use({ "simeji/winresizer" })
     use({ "kaepa3/swpclear" })
     use({ "machakann/vim-sandwich" })
@@ -19,6 +20,7 @@ require("packer").startup(function()
         "nvim-lualine/lualine.nvim",
         requires = { "kyazdani42/nvim-web-devicons", opt = true },
     })
+    use({ "nvim-treesitter/nvim-treesitter", run = ":TSUpdate" })
     --style
     use({
         "nvim-telescope/telescope.nvim",
@@ -79,6 +81,7 @@ require("lualine").setup()
 --lsp
 require("p-conf/mason")
 require("p-conf/null-ls")
-require("p-conf.cmp")
+require("p-conf/cmp")
+require("p-conf/tree")
 
 --> lsp
