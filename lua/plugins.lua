@@ -4,6 +4,7 @@ require("packer").startup(function()
     use("wbthomason/packer.nvim")
     use("tpope/vim-fugitive")
     use("tpope/vim-repeat")
+    use("unblevable/quick-scope")
 
     --common
     use({ "kaepa3/timer.nvim" })
@@ -83,5 +84,6 @@ require("p-conf/mason")
 require("p-conf/null-ls")
 require("p-conf/cmp")
 require("p-conf/tree")
+require("p-conf/qs")
 
 --> lsp
