@@ -3,6 +3,9 @@ vim.g.mapleader = ' '
 local lspinstaller = require 'nvim-lsp-installer'
 
 lspinstaller.setup {}
+--vim
+vim.keymap.set("n", "gn", ":bn<CR>")
+vim.keymap.set("n", "gp", ":bp<CR>")
 
 --general
 vim.keymap.set("i", "<C-o>", "<ESC>o")
