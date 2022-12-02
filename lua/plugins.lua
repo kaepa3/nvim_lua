@@ -2,28 +2,12 @@ vim.cmd([[packadd packer.nvim]])
 
 require("packer").startup(function()
     --general
-    use("nvim-tree/nvim-web-devicons")
     use("wbthomason/packer.nvim")
     use("tpope/vim-fugitive")
     use("tpope/vim-repeat")
     use("unblevable/quick-scope")
-    use({
-        "folke/noice.nvim",
-        config = function()
-            require("noice").setup({
-                -- add any options here
-            })
-        end,
-        requires = {
-            -- if you lazy-load any plugin below, make sure to add proper `module="..."` entries
-            "MunifTanjim/nui.nvim",
-            -- OPTIONAL:
-            --   `nvim-notify` is only needed, if you want to use the notification view.
-            --   If not available, we use `mini` as the fallback
-            "rcarriga/nvim-notify",
-        },
-    })
     --common
+    use({ "nvim-tree/nvim-web-devicons" })
     use({ "kaepa3/timer.nvim" })
     use({ "simeji/winresizer" })
     use({ "kaepa3/swpclear" })
@@ -35,6 +19,22 @@ require("packer").startup(function()
         end,
     })
     use({ "nvim-treesitter/nvim-treesitter", run = ":TSUpdate" })
+    use({
+        "nvim-lualine/lualine.nvim",
+        requires = { "kyazdani42/nvim-web-devicons", opt = true },
+    })
+    use({
+        "folke/noice.nvim",
+        config = function()
+            require("noice").setup({
+                -- add any options here
+            })
+        end,
+        requires = {
+            "MunifTanjim/nui.nvim",
+            "rcarriga/nvim-notify",
+        },
+    })
     --style
     use({
         "nvim-telescope/telescope.nvim",
@@ -65,11 +65,7 @@ require("packer").startup(function()
         "folke/trouble.nvim",
         requires = "kyazdani42/nvim-web-devicons",
         config = function()
-            require("trouble").setup({
-                -- your configuration comes here
-                -- or leave it empty to use the default settings
-                -- refer to the configuration section below
-            })
+            require("trouble").setup({})
         end,
     })
     --html
@@ -90,7 +86,15 @@ require("nvim-autopairs").setup({
 
 --style
 vim.cmd("colorscheme nightfox")
-
+require("lualine").setup({
+    options = {
+        icons_enabled = true,
+    },
+})
+require("nvim-web-devicons").setup({
+    color_icons = true,
+    default = true,
+})
 --lsp
 require("p-conf/mason")
 require("p-conf/null-ls")
