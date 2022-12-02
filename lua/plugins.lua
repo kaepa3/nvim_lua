@@ -2,6 +2,7 @@ vim.cmd([[packadd packer.nvim]])
 
 require("packer").startup(function()
   --general
+  use("nvim-tree/nvim-web-devicons")
   use("wbthomason/packer.nvim")
   use("tpope/vim-fugitive")
   use("tpope/vim-repeat")
