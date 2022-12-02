@@ -34,10 +34,6 @@ require("packer").startup(function()
             require("nvim-autopairs").setup({})
         end,
     })
-    use({
-        "nvim-lualine/lualine.nvim",
-        requires = { "kyazdani42/nvim-web-devicons", opt = true },
-    })
     use({ "nvim-treesitter/nvim-treesitter", run = ":TSUpdate" })
     --style
     use({
@@ -94,7 +90,6 @@ require("nvim-autopairs").setup({
 
 --style
 vim.cmd("colorscheme nightfox")
-require("lualine").setup()
 
 --lsp
 require("p-conf/mason")
