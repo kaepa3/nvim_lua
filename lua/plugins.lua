@@ -3,6 +3,7 @@ vim.cmd([[packadd packer.nvim]])
 require("packer").startup(function()
     --general
     use("wbthomason/packer.nvim")
+    use("lewis6991/impatient.nvim")
     use("tpope/vim-fugitive")
     use("tpope/vim-repeat")
     use("unblevable/quick-scope")
@@ -43,12 +44,8 @@ require("packer").startup(function()
         requires = { { "nvim-lua/plenary.nvim" } },
     })
     use("EdenEast/nightfox.nvim")
-    use({
-        "folke/styler.nvim",
-        config = function()
-            require("styler").setup({})
-        end,
-    })
+    use("folke/tokyonight.nvim")
+    use({ "folke/styler.nvim" })
     --ls
     use("neovim/nvim-lspconfig")
     use({ "williamboman/mason.nvim" })
@@ -85,6 +82,8 @@ require("packer").startup(function()
     use("tyru/open-browser.vim")
     use("previm/previm")
 end)
+require("impatient")
+
 vim.cmd([[autocmd BufWritePost init.lua source <afile> | PackerCompile]])
 
 require("nvim-autopairs").setup({
@@ -93,8 +92,12 @@ require("nvim-autopairs").setup({
 
 --style
 vim.cmd("colorscheme nightfox")
-require("styler").set_theme(0, {
-    colorscheme = "nightfox",
+require("styler").setup({
+    themes = {
+        colorscheme = "nightfox",
+        go = { colorscheme = "tokyonight" },
+        help = { colorscheme = "dark", background = "dark" },
+    },
 })
 
 require("lualine").setup({
