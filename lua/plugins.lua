@@ -90,16 +90,6 @@ require("nvim-autopairs").setup({
     disable_filetype = { "TelescopePrompt", "vim" },
 })
 
---style
-vim.cmd("colorscheme nightfox")
-require("styler").setup({
-    themes = {
-        colorscheme = "nightfox",
-        go = { colorscheme = "tokyonight" },
-        help = { colorscheme = "dark", background = "dark" },
-    },
-})
-
 require("lualine").setup({
     options = {
         icons_enabled = true,
@@ -116,5 +106,6 @@ require("p-conf/cmp")
 require("p-conf/tree")
 require("p-conf/qs")
 require("p-conf/notice")
+require("p-conf/style")
 
 --> lsp
