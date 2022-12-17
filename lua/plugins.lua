@@ -19,6 +19,7 @@ require("packer").startup(function()
         end,
     })
     use({ "nvim-treesitter/nvim-treesitter", run = ":TSUpdate" })
+    use("nvim-treesitter/nvim-treesitter-context")
     use({
         "nvim-lualine/lualine.nvim",
         requires = { "kyazdani42/nvim-web-devicons", opt = true },
@@ -42,7 +43,13 @@ require("packer").startup(function()
         requires = { { "nvim-lua/plenary.nvim" } },
     })
     use("EdenEast/nightfox.nvim")
-    --lsp
+    use({
+        "folke/styler.nvim",
+        config = function()
+            require("styler").setup({})
+        end,
+    })
+    --ls
     use("neovim/nvim-lspconfig")
     use({ "williamboman/mason.nvim" })
     use({ "williamboman/mason-lspconfig.nvim" })
@@ -86,6 +93,10 @@ require("nvim-autopairs").setup({
 
 --style
 vim.cmd("colorscheme nightfox")
+require("styler").set_theme(0, {
+    colorscheme = "nightfox",
+})
+
 require("lualine").setup({
     options = {
         icons_enabled = true,
