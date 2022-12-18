@@ -8,28 +8,48 @@ BASE_COLORSCHEME = "nightfox"
 ACTIVE_COLORSCHEME = "nightfox"
 INACTIVE_COLORSCHEME = "nordfox"
 
+api = vim.api
+
+local function inactivate(win)
+    -- skip for certain situations
+    if not api.nvim_win_is_valid(win) then
+        return
+    end
+    if api.nvim_win_get_config(win).relative ~= "" then
+        return
+    end
+
+    -- apply colorscheme if not yet
+    if (vim.w[win].theme or {}).colorscheme ~= INACTIVE_COLORSCHEME then
+        require("styler").set_theme(win, { colorscheme = INACTIVE_COLORSCHEME })
+    end
+end
+
 -- Apply colorscheme
 vim.cmd("colorscheme " .. BASE_COLORSCHEME)
-vim.api.nvim_create_autocmd({ "WinEnter", "BufEnter" }, {
-    group = vim.api.nvim_create_augroup("theme-custom", {}),
+-- autocmdの発行
+api.nvim_create_autocmd({ "WinLeave" }, {
+    group = vim.api.nvim_create_augroup("styler-nvim-custom", {}),
     callback = function(_)
-        local set_theme = require("styler").set_theme
-        local win = vim.api.nvim_get_current_win()
+        local win_event = api.nvim_get_current_win()
+        vim.schedule(function()
+            local win_pre = vim.fn.win_getid(vim.fn.winnr("#"))
+            local win_cursor = api.nvim_get_current_win()
 
-        -- use default colorscheme instead of applying styler.nvim on floatwin
-        -- because some UIs are composed of multiple windows and they should share the theme
-        if vim.api.nvim_win_get_config(win).relative ~= "" then
-            return
-        end
-
-        -- apply styler.nvim on active window
-        set_theme(win, { colorscheme = ACTIVE_COLORSCHEME })
-
-        -- apply styler.nvim on inactive windows
-        for _, w in pairs(vim.api.nvim_tabpage_list_wins(0)) do
-            if w ~= win then
-                set_theme(w, { colorscheme = INACTIVE_COLORSCHEME })
+            -- カーソル位置のウィンドウでstyler.nvimを無効化する
+            if (vim.w[win_cursor].theme or {}).colorscheme then
+                require("styler").clear(win_cursor)
             end
-        end
+
+            -- 直前のウィンドウにカーソルがなければinactivate
+            if win_pre ~= 0 and win_pre ~= win_cursor then
+                inactivate(win_pre)
+            end
+
+            -- イベントを発行したウィンドウにカーソルがなければinactivate
+            if win_event ~= win_cursor then
+                inactivate(win_event)
+            end
+        end)
     end,
 })
