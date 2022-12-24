@@ -19,8 +19,6 @@ require("packer").startup(function()
             require("nvim-autopairs").setup({})
         end,
     })
-    use({ "nvim-treesitter/nvim-treesitter", run = ":TSUpdate" })
-    use("nvim-treesitter/nvim-treesitter-context")
     use({
         "nvim-lualine/lualine.nvim",
         requires = { "kyazdani42/nvim-web-devicons", opt = true },
@@ -103,7 +101,6 @@ require("nvim-web-devicons").setup({
 require("p-conf/mason")
 require("p-conf/null-ls")
 require("p-conf/cmp")
-require("p-conf/tree")
 require("p-conf/qs")
 require("p-conf/notice")
 require("p-conf/style")
