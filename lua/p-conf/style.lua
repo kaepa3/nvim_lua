@@ -8,14 +8,12 @@ BASE_COLORSCHEME = "nightfox"
 ACTIVE_COLORSCHEME = "nightfox"
 INACTIVE_COLORSCHEME = "nordfox"
 
-api = vim.api
-
 local function inactivate(win)
     -- skip for certain situations
-    if not api.nvim_win_is_valid(win) then
+    if not vim.api.nvim_win_is_valid(win) then
         return
     end
-    if api.nvim_win_get_config(win).relative ~= "" then
+    if vim.api.nvim_win_get_config(win).relative ~= "" then
         return
     end
 
@@ -28,13 +26,15 @@ end
 -- Apply colorscheme
 vim.cmd("colorscheme " .. BASE_COLORSCHEME)
 -- autocmdの発行
-api.nvim_create_autocmd({ "WinLeave" }, {
+
+-- autocmdの発行
+vim.api.nvim_create_autocmd({ "WinLeave", "WinNew" }, {
     group = vim.api.nvim_create_augroup("styler-nvim-custom", {}),
     callback = function(_)
-        local win_event = api.nvim_get_current_win()
+        local win_event = vim.api.nvim_get_current_win()
         vim.schedule(function()
             local win_pre = vim.fn.win_getid(vim.fn.winnr("#"))
-            local win_cursor = api.nvim_get_current_win()
+            local win_cursor = vim.api.nvim_get_current_win()
 
             -- カーソル位置のウィンドウでstyler.nvimを無効化する
             if (vim.w[win_cursor].theme or {}).colorscheme then
