@@ -1,3 +1,5 @@
+require("p-conf/qs")
+
 local lazypath = vim.fn.stdpath("data") .. "~/lazy/lazy.nvim"
 if not vim.loop.fs_stat(lazypath) then
     vim.fn.system({ "git", "clone", "--filter=blob:none", "https://github.com/folke/lazy.nvim.git", lazypath })
@@ -5,7 +7,6 @@ if not vim.loop.fs_stat(lazypath) then
 end
 vim.opt.rtp:prepend(lazypath)
 require("lazy").setup({
-    { "wbthomason/packer.nvim" },
     { "lewis6991/impatient.nvim" },
     { "tpope/vim-fugitive" },
     { "tpope/vim-repeat" },
@@ -24,7 +25,6 @@ require("lazy").setup({
     },
     { "nvim-treesitter/nvim-treesitter-context" },
     { "nvim-treesitter/nvim-treesitter", build = ":TSUpdate" },
-
     {
         "nvim-lualine/lualine.nvim",
         dependencies = { "nvim-tree/nvim-web-devicons", lazy = true },
@@ -83,8 +83,6 @@ require("lazy").setup({
 })
 require("impatient")
 
-vim.cmd([[autocmd BufWritePost init.lua source <afile> | PackerCompile]])
-
 require("nvim-autopairs").setup({
     disable_filetype = { "TelescopePrompt", "vim" },
 })
@@ -103,7 +101,6 @@ require("p-conf/mason")
 require("p-conf/null-ls")
 require("p-conf/cmp")
 require("p-conf/tree")
-require("p-conf/qs")
 require("p-conf/notice")
 require("p-conf/style")
 
