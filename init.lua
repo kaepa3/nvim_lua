@@ -35,12 +35,10 @@ vim.o.clipboard = "unnamedplus"
 vim.o.cmdheight = 0
 
 vim.cmd([[autocmd BufWritePre * lua vim.lsp.buf.format()]])
---syntax on
 -- 行末のスペースを可視化
 --vim.o.listchars=tab:^\ ,trail:~
 --vim.o.listchars=tab:»\ ,trail:-,extends:»,precedes:«,nbsp:%
 -- インデント設定
---filetype plugin indent on
 ---------------------->configvim
 
 require("keymapping")
@@ -48,4 +46,3 @@ require("snip")
 require("snipgo")
 require("sniphtml")
 require("lua-snip")
-

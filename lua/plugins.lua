@@ -1,88 +1,85 @@
-vim.cmd([[packadd packer.nvim]])
+require("p-conf/qs")
 
-require("packer").startup(function()
-    --general
-    use("wbthomason/packer.nvim")
-    use("lewis6991/impatient.nvim")
-    use("tpope/vim-fugitive")
-    use("tpope/vim-repeat")
-    use("unblevable/quick-scope")
+local lazypath = vim.fn.stdpath("data") .. "~/lazy/lazy.nvim"
+if not vim.loop.fs_stat(lazypath) then
+    vim.fn.system({ "git", "clone", "--filter=blob:none", "https://github.com/folke/lazy.nvim.git", lazypath })
+    vim.fn.system({ "git", "-C", lazypath, "checkout", "tags/stable" }) -- last stable release
+end
+vim.opt.rtp:prepend(lazypath)
+require("lazy").setup({
+    { "lewis6991/impatient.nvim" },
+    { "tpope/vim-fugitive" },
+    { "tpope/vim-repeat" },
+    { "unblevable/quick-scope" },
     --common
-    use({ "nvim-tree/nvim-web-devicons" })
-    use({ "kaepa3/timer.nvim" })
-    use({ "simeji/winresizer" })
-    use({ "kaepa3/swpclear" })
-    use({ "machakann/vim-sandwich" })
-    use({
+    { "nvim-tree/nvim-web-devicons" },
+    { "kaepa3/timer.nvim" },
+    { "simeji/winresizer" },
+    { "kaepa3/swpclear" },
+    { "machakann/vim-sandwich" },
+    {
         "windwp/nvim-autopairs",
         config = function()
-            require("nvim-autopairs").setup({})
+            require("nvim-autopairs").setup()
         end,
-    })
-    use({
+    },
+    {
         "nvim-lualine/lualine.nvim",
-        requires = { "kyazdani42/nvim-web-devicons", opt = true },
-    })
-    use({
+        dependencies = { "nvim-tree/nvim-web-devicons", lazy = true },
+    },
+    {
         "folke/noice.nvim",
-        config = function()
-            require("noice").setup({
-                -- add any options here
-            })
-        end,
-        requires = {
+        dependencies = {
             "MunifTanjim/nui.nvim",
             "rcarriga/nvim-notify",
         },
-    })
+    },
     --style
-    use({
+    {
         "nvim-telescope/telescope.nvim",
-        tag = "0.1.0",
-        requires = { { "nvim-lua/plenary.nvim" } },
-    })
-    use("EdenEast/nightfox.nvim")
-    use("folke/tokyonight.nvim")
-    use({ "folke/styler.nvim" })
+        version = "0.1.0",
+        dependencies = { "nvim-lua/plenary.nvim" },
+    },
+    { "EdenEast/nightfox.nvim" },
+    { "folke/tokyonight.nvim" },
+    { "folke/styler.nvim" },
     --ls
-    use("neovim/nvim-lspconfig")
-    use({ "williamboman/mason.nvim" })
-    use({ "williamboman/mason-lspconfig.nvim" })
-    use({
+    { "neovim/nvim-lspconfig" },
+    { "williamboman/mason.nvim" },
+    { "williamboman/mason-lspconfig.nvim" },
+    {
         "williamboman/nvim-lsp-installer",
-    })
-    use({
+    },
+    {
         "hrsh7th/nvim-cmp",
-        requires = {
+        dependencies = {
             { "L3MON4D3/LuaSnip" },
             { "saadparwaiz1/cmp_luasnip" },
         },
-    })
-    use("hrsh7th/cmp-nvim-lsp")
-    use({
+    },
+    { "hrsh7th/cmp-nvim-lsp" },
+    {
         "jose-elias-alvarez/null-ls.nvim",
-        requires = "nvim-lua/plenary.nvim",
-    })
-    use({
+        dependencies = "nvim-lua/plenary.nvim",
+    },
+    {
         "folke/trouble.nvim",
-        requires = "kyazdani42/nvim-web-devicons",
+        dependencies = "kyazdani42/nvim-web-devicons",
         config = function()
-            require("trouble").setup({})
+            require("trouble").setup()
         end,
-    })
+    },
     --html
-    use({
+    {
         "mattn/emmet-vim",
         ft = "html",
-        opt = true,
-    })
+        lazy = true,
+    },
     --markdown
-    use("tyru/open-browser.vim")
-    use("previm/previm")
-end)
+    { "tyru/open-browser.vim", lazy = true },
+    { "previm/previm", lazy = true },
+})
 require("impatient")
-
-vim.cmd([[autocmd BufWritePost init.lua source <afile> | PackerCompile]])
 
 require("nvim-autopairs").setup({
     disable_filetype = { "TelescopePrompt", "vim" },
@@ -101,7 +98,6 @@ require("nvim-web-devicons").setup({
 require("p-conf/mason")
 require("p-conf/null-ls")
 require("p-conf/cmp")
-require("p-conf/qs")
 require("p-conf/notice")
 require("p-conf/style")
 
