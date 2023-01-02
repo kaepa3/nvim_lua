@@ -14,6 +14,15 @@ ls.add_snippets("go", {
         i(0, "write func"),
         t({ "", "}" }),
     }),
+    s("func", {
+        t({ "", "func " }),
+        i(1, "func name"),
+        t({ " ()" }),
+        i(0),
+        t({ "{", "" }),
+        i(2, "write process"),
+        t({ "", "}" }),
+    }),
 })
 
 require("luasnip.loaders.from_lua").lazy_load({ include = { "go" } })
