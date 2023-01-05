@@ -3,8 +3,9 @@ require("p-conf/qs")
 local lazypath = vim.fn.stdpath("data") .. "~/lazy/lazy.nvim"
 if not vim.loop.fs_stat(lazypath) then
     vim.fn.system({ "git", "clone", "--filter=blob:none", "https://github.com/folke/lazy.nvim.git", lazypath })
-    vim.fn.system({ "git", "-C", lazypath, "checkout", "tags/stable" }) -- last stable release
+    vim.fn.system({ "git", "-C", lazypath, "checkout", "tags/stable" })
 end
+
 vim.opt.rtp:prepend(lazypath)
 require("lazy").setup({
     { "lewis6991/impatient.nvim" },
@@ -12,7 +13,6 @@ require("lazy").setup({
     { "tpope/vim-repeat" },
     { "unblevable/quick-scope" },
     --common
-    { "nvim-tree/nvim-web-devicons" },
     { "kaepa3/timer.nvim" },
     { "simeji/winresizer" },
     { "kaepa3/swpclear" },
@@ -27,7 +27,7 @@ require("lazy").setup({
     { "nvim-treesitter/nvim-treesitter", build = ":TSUpdate" },
     {
         "nvim-lualine/lualine.nvim",
-        dependencies = { "nvim-tree/nvim-web-devicons", lazy = true },
+        dependencies = { "kyazdani42/nvim-web-devicons" },
     },
     {
         "folke/noice.nvim",
