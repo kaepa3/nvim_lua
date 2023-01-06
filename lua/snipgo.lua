@@ -23,6 +23,16 @@ ls.add_snippets("go", {
         i(2, "write process"),
         t({ "", "}" }),
     }),
+    s("test", {
+        t({ "package " }),
+        i(1, "pkgname"),
+        t({ "", 'import "testing"', "" }),
+        t({ "", "func " }),
+        i(2, "TestName"),
+        t({ "(t *testing.T){", "" }),
+        t({ "    t.Fail()" }),
+        t({ "", "}" }),
+    }),
 })
 
 require("luasnip.loaders.from_lua").lazy_load({ include = { "go" } })

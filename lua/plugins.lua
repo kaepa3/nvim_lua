@@ -14,6 +14,7 @@ require("lazy").setup({
     { "unblevable/quick-scope" },
     --common
     { "kaepa3/timer.nvim" },
+    { "kaepa3/cgpt.nvim" },
     { "simeji/winresizer" },
     { "kaepa3/swpclear" },
     { "machakann/vim-sandwich" },
@@ -78,8 +79,8 @@ require("lazy").setup({
         lazy = true,
     },
     --markdown
-    { "tyru/open-browser.vim", lazy = true },
-    { "previm/previm", lazy = true },
+    { "tyru/open-browser.vim", ft = "markdown", lazy = true },
+    { "previm/previm", ft = "markdown", lazy = true },
 })
 require("impatient")
 
