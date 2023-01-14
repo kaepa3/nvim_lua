@@ -35,6 +35,14 @@ vim.o.clipboard = "unnamedplus"
 vim.o.cmdheight = 0
 
 vim.cmd([[autocmd BufWritePre * lua vim.lsp.buf.format()]])
+
+-- ステータスカラム
+vim.cmd("set nu rnu")
+vim.cmd(
+    --'let &stc=\'%#NonText#%{&nu?v:lnum:""}%=%{&rnu&&(v:lnum%2)?"\\ ".v:relnum:""}%#LineNr#%{&rnu&&!(v:lnum%2)?"\\ ".v:relnum:""}｜\''
+    'let &stc=\'%s%#NonText#%{&nu?v:lnum:""}%=%{&rnu&&(v:lnum%2)?"\\ ".v:relnum:""}%#LineNr#%{&rnu&&!(v:lnum%2)?"\\ ".v:relnum:""}｜\''
+)
+
 -- 行末のスペースを可視化
 --vim.o.listchars=tab:^\ ,trail:~
 --vim.o.listchars=tab:»\ ,trail:-,extends:»,precedes:«,nbsp:%

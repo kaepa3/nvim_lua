@@ -15,6 +15,7 @@ require("lazy").setup({
     --common
     { "kaepa3/timer.nvim" },
     { "kaepa3/cgpt.nvim" },
+    { "kaepa3/mecaber.nvim" },
     { "simeji/winresizer" },
     { "kaepa3/swpclear" },
     { "machakann/vim-sandwich" },
