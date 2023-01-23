@@ -14,6 +14,7 @@ require("lazy").setup({
     { "unblevable/quick-scope" },
     --common
     { "kaepa3/timer.nvim" },
+    { "kaepa3/deepler.nvim" },
     { "kaepa3/cgpt.nvim" },
     { "kaepa3/mecaber.nvim" },
     { "simeji/winresizer" },

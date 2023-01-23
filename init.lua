@@ -2,10 +2,9 @@ require("plugins")
 
 --config--vim
 vim.o.virtualedit = block
---
 vim.o.number = true
 vim.o.laststatus = 2
---
+
 --search
 vim.o.hlsearch = true
 vim.o.ignorecase = true
@@ -39,7 +38,6 @@ vim.cmd([[autocmd BufWritePre * lua vim.lsp.buf.format()]])
 -- ステータスカラム
 vim.cmd("set nu rnu")
 vim.cmd(
-    --'let &stc=\'%#NonText#%{&nu?v:lnum:""}%=%{&rnu&&(v:lnum%2)?"\\ ".v:relnum:""}%#LineNr#%{&rnu&&!(v:lnum%2)?"\\ ".v:relnum:""}｜\''
     'let &stc=\'%s%#NonText#%{&nu?v:lnum:""}%=%{&rnu&&(v:lnum%2)?"\\ ".v:relnum:""}%#LineNr#%{&rnu&&!(v:lnum%2)?"\\ ".v:relnum:""}｜\''
 )
 
@@ -48,7 +46,6 @@ vim.cmd(
 --vim.o.listchars=tab:»\ ,trail:-,extends:»,precedes:«,nbsp:%
 -- インデント設定
 ---------------------->configvim
-
 require("keymapping")
 require("snip")
 require("snipgo")
