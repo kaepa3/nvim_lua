@@ -41,12 +41,15 @@ vim.cmd(
     'let &stc=\'%s%#NonText#%{&nu?v:lnum:""}%=%{&rnu&&(v:lnum%2)?"\\ ".v:relnum:""}%#LineNr#%{&rnu&&!(v:lnum%2)?"\\ ".v:relnum:""}｜\''
 )
 
+-- denops
+vim.cmd("set runtimepath^=~/dps-helloworld")
 -- 行末のスペースを可視化
 --vim.o.listchars=tab:^\ ,trail:~
 --vim.o.listchars=tab:»\ ,trail:-,extends:»,precedes:«,nbsp:%
 -- インデント設定
 ---------------------->configvim
 require("keymapping")
+require("command")
 require("snip")
 require("snipgo")
 require("sniphtml")

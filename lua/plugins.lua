@@ -13,6 +13,7 @@ require("lazy").setup({
     { "tpope/vim-repeat" },
     { "unblevable/quick-scope" },
     --common
+    { "vim-denops/denops.vim" },
     { "kaepa3/timer.nvim" },
     { "kaepa3/deepler.nvim" },
     { "kaepa3/cgpt.nvim" },
