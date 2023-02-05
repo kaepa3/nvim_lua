@@ -13,10 +13,14 @@ local function create_opt(server_name)
     if server_name == "tsserver" then
         if is_node_repo then
             opts.root_dir = node_root_dir
+        else
+            return nil
         end
     elseif server_name == "eslint" then
         if is_node_repo then
             opts.root_dir = node_root_dir
+        else
+            return nil
         end
     elseif server_name == "sumneko_lua" then
         opts.settings = {
@@ -42,6 +46,8 @@ local function create_opt(server_name)
                     },
                 },
             }
+        else
+            return nil
         end
     end
     print(opts)
@@ -52,8 +58,10 @@ local function create_opt(server_name)
 end
 
 require("mason-lspconfig").setup_handlers({
-    function(server_name) -- default handler (optional)
-        opts = create_opt(server_name)
-        require("lspconfig")[server_name].setup(opts)
+    function(server_name)
+        local opts = create_opt(server_name)
+        if opts ~= nil then
+            require("lspconfig")[server_name].setup(opts)
+        end
     end,
 })
