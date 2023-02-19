@@ -41,6 +41,10 @@ vim.cmd(
     'let &stc=\'%s%#NonText#%{&nu?v:lnum:""}%=%{&rnu&&(v:lnum%2)?"\\ ".v:relnum:""}%#LineNr#%{&rnu&&!(v:lnum%2)?"\\ ".v:relnum:""}｜\''
 )
 
+if vim.fn.has('win32') or vim.fn.has ('win64') then
+    require("win")
+end
+
 -- denops
 vim.cmd("set runtimepath^=~/dps-helloworld")
 -- 行末のスペースを可視化
