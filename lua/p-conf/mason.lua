@@ -22,7 +22,7 @@ local function create_opt(server_name)
         else
             return nil
         end
-    elseif server_name == "sumneko_lua" then
+    elseif server_name == "lua_ls" then
         opts.settings = {
             Lua = {
                 diagnostics = {
@@ -50,7 +50,6 @@ local function create_opt(server_name)
             return nil
         end
     end
-    print(opts)
 
     opts.capabilities = capabilities
     opts.on_attach = on_attach
