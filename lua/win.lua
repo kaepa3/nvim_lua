@@ -1,1 +1,1 @@
-vim.cmd("set shell=cmd")
+--vim.cmd("set shell=cmd")
