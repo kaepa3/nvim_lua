@@ -28,7 +28,7 @@ require("lazy").setup({
         end,
     },
     { "nvim-treesitter/nvim-treesitter-context" },
-    { "nvim-treesitter/nvim-treesitter", build = ":TSUpdate" },
+    { "nvim-treesitter/nvim-treesitter",        build = ":TSUpdate" },
     {
         "nvim-lualine/lualine.nvim",
         dependencies = { "kyazdani42/nvim-web-devicons" },
@@ -50,7 +50,7 @@ require("lazy").setup({
     { "folke/tokyonight.nvim" },
     { "folke/styler.nvim" },
     --ls
-    { "neovim/nvim-lspconfig" },
+{ "neovim/nvim-lspconfig" },
     { "williamboman/mason.nvim" },
     { "williamboman/mason-lspconfig.nvim" },
     {
@@ -83,7 +83,7 @@ require("lazy").setup({
     },
     --markdown
     { "tyru/open-browser.vim", ft = "markdown", lazy = true },
-    { "previm/previm", ft = "markdown", lazy = true },
+    { "previm/previm",         ft = "markdown", lazy = true },
 })
 require("impatient")
 
@@ -100,7 +100,7 @@ require("nvim-web-devicons").setup({
     color_icons = true,
     default = true,
 })
---lsp
+----lsp
 require("p-conf/mason")
 require("p-conf/null-ls")
 require("p-conf/cmp")
