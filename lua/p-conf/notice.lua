@@ -22,4 +22,4 @@ require("noice").setup({
         lsp_doc_border = false, -- add a border to hover docs and signature help
     },
 })
---search_down = { icon = " " },
+----search_down = { icon = " " },

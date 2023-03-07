@@ -32,6 +32,12 @@ vim.o.list = true
 vim.o.clipboard = "unnamedplus"
 -- コマンド表示は基本しない
 vim.o.cmdheight = 0
+vim.api.nvim_create_autocmd("RecordingEnter", {
+    command = "set cmdheight=1",
+})
+vim.api.nvim_create_autocmd("RecordingEnter", {
+    command = "set cmdheight=1",
+})
 
 vim.cmd([[autocmd BufWritePre * lua vim.lsp.buf.format()]])
 
@@ -41,7 +47,7 @@ vim.cmd(
     'let &stc=\'%s%#NonText#%{&nu?v:lnum:""}%=%{&rnu&&(v:lnum%2)?"\\ ".v:relnum:""}%#LineNr#%{&rnu&&!(v:lnum%2)?"\\ ".v:relnum:""}｜\''
 )
 
-if vim.fn.has('win32') or vim.fn.has ('win64') then
+if vim.fn.has("win32") or vim.fn.has("win64") then
     require("win")
 end
 
