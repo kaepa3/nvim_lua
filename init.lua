@@ -33,10 +33,10 @@ vim.o.clipboard = "unnamedplus"
 -- コマンド表示は基本しない
 vim.o.cmdheight = 0
 vim.api.nvim_create_autocmd("RecordingEnter", {
-    command = "set cmdheight=1",
+        command = "set cmdheight=1",
 })
-vim.api.nvim_create_autocmd("RecordingEnter", {
-    command = "set cmdheight=1",
+vim.api.nvim_create_autocmd("RecordingLeave", {
+    command = "set cmdheight=0",
 })
 
 vim.cmd([[autocmd BufWritePre * lua vim.lsp.buf.format()]])

@@ -78,7 +78,7 @@ require("lazy").setup({
     --html
     {
         "mattn/emmet-vim",
-        ft = "html",
+        ft = { "html", "typescript" },
         lazy = true,
     },
     --markdown
