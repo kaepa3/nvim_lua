@@ -90,10 +90,26 @@ require("impatient")
 require("nvim-autopairs").setup({
     disable_filetype = { "TelescopePrompt", "vim" },
 })
+local function show_macro_recording()
+    local recording_register = vim.fn.reg_recording()
+    if recording_register == "" then
+        return ""
+    else
+        return "Recording @" .. recording_register
+    end
+end
 
 require("lualine").setup({
     options = {
         icons_enabled = true,
+    },
+    sections = {
+        lualine_b = {
+            {
+                "macro-recording",
+                fmt = show_macro_recording,
+            },
+        },
     },
 })
 require("nvim-web-devicons").setup({

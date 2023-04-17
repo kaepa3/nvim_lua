@@ -16,11 +16,11 @@ ls.add_snippets("go", {
     }),
     s("func", {
         t({ "", "func " }),
-        i(1, "func name"),
+        i(1, "funcName"),
         t({ " ()" }),
         i(0),
         t({ "{", "" }),
-        i(2, "write process"),
+        i(2, "writeProcess"),
         t({ "", "}" }),
     }),
     s("test", {
@@ -31,6 +31,21 @@ ls.add_snippets("go", {
         i(2, "TestName"),
         t({ "(t *testing.T){", "" }),
         t({ "    t.Fail()" }),
+        t({ "", "}" }),
+    }),
+    s("for", {
+        t({ "for " }),
+        i(1, "i:=0; i< N; i++"),
+        t({ "{", "" }),
+        i(0, "process"),
+        t({ "", "}" }),
+    }),
+    s("range", {
+        t({ "for " }),
+        t({ "i := range " }),
+        i(1, "obj"),
+        t({ "{", "" }),
+        i(0, "process"),
         t({ "", "}" }),
     }),
 })
