@@ -21,10 +21,6 @@ ls.add_snippets("all", {
         t({ "Sample Text!" }),
         i(1),
     }),
-    s({ trig = "isel2" }, {
-        i(1, { "hoge", "fuga" }),
-        i(0),
-    }),
     s({ trig = "b(%d)", regTrig = true, wordTrig = true }, {
         f(function(_, snip)
             return {
