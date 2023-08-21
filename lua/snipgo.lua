@@ -37,7 +37,7 @@ ls.add_snippets("go", {
     }),
     s("for", {
         t({ "for " }),
-        i(1, "i:=0; i< N; i++"),
+        t({ "i:=0; i< N; i++" }),
         t({ "{", "" }),
         i(0, "process"),
         t({ "", "}" }),
