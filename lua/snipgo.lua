@@ -17,10 +17,12 @@ ls.add_snippets("go", {
     s("func", {
         t({ "", "func " }),
         i(1, "funcName"),
-        t({ " ()" }),
-        i(0),
+        t({ " (" }),
+        i(2, "args"),
+        t({ ")" }),
+        i(3, "ret"),
         t({ "{", "" }),
-        i(2, "writeProcess"),
+        i(0, "writeProcess"),
         t({ "", "}" }),
     }),
     s("test", {
@@ -42,9 +44,15 @@ ls.add_snippets("go", {
     }),
     s("range", {
         t({ "for " }),
-        t({ "i := range " }),
-        i(1, "obj"),
+        i(1, "roop"),
+        t({ ":= range " }),
+        i(2, "obj"),
         t({ "{", "" }),
+        i(0, "process"),
+        t({ "", "}" }),
+    }),
+    s("err", {
+        t({ "if err != nil {", "" }),
         i(0, "process"),
         t({ "", "}" }),
     }),
