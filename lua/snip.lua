@@ -32,3 +32,8 @@ ls.add_snippets("all", {
 })
 
 require("luasnip.loaders.from_lua").lazy_load({ include = { "all" } })
+
+require("snipgo")
+require("snippy")
+require("sniphtml")
+require("snipc")
