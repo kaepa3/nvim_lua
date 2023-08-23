@@ -54,13 +54,23 @@ require("lazy").setup({
                     -- default options: exact mode, multi window, all directions, with a backdrop
                     require("flash").jump()
                 end,
+                desc = "Flash",
             },
             {
                 "S",
-                mode = { "o", "x" },
+                mode = { "n", "o", "x" },
                 function()
                     require("flash").treesitter()
                 end,
+                desc = "Flash Treesitter",
+            },
+            {
+                "r",
+                mode = "o",
+                function()
+                    require("flash").remote()
+                end,
+                desc = "Remote Flash",
             },
         },
     },
@@ -88,10 +98,7 @@ require("lazy").setup({
         },
     },
     { "hrsh7th/cmp-nvim-lsp" },
-    {
-        "jose-elias-alvarez/null-ls.nvim",
-        dependencies = "nvim-lua/plenary.nvim",
-    },
+    { "jose-elias-alvarez/null-ls.nvim" },
     {
         "folke/trouble.nvim",
         dependencies = "kyazdani42/nvim-web-devicons",
@@ -123,6 +130,21 @@ local function show_macro_recording()
     end
 end
 
+local lsp_names = function()
+    local clients = {}
+    for _, client in ipairs(vim.lsp.get_active_clients({ bufnr = 0 })) do
+        if client.name == "null-ls" then
+            local sources = {}
+            for _, source in ipairs(require("null-ls.sources").get_available(vim.bo.filetype)) do
+                table.insert(sources, source.name)
+            end
+            table.insert(clients, "null-ls(" .. table.concat(sources, ", ") .. ")")
+        else
+            table.insert(clients, "1:" .. client.name)
+        end
+    end
+    return " " .. table.concat(clients, ", ")
+end
 require("lualine").setup({
     options = {
         icons_enabled = true,
@@ -134,6 +156,7 @@ require("lualine").setup({
                 fmt = show_macro_recording,
             },
         },
+        lualine_x = { lsp_names },
     },
 })
 require("nvim-web-devicons").setup({
@@ -147,7 +170,6 @@ require("p-conf/cmp")
 require("p-conf/tree")
 require("p-conf/notice")
 require("p-conf/style")
-
 --> lsp
 require("gitsigns").setup({
     signs = {
