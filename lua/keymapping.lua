@@ -7,6 +7,7 @@ lspinstaller.setup({})
 vim.keymap.set("n", "gn", ":bn<CR>")
 vim.keymap.set("n", "gp", ":bp<CR>")
 vim.keymap.set("n", "<ESC><ESC>", ":nohl<CR>")
+vim.keymap.set("i", "jj", "<Esc>")
 
 --general
 vim.keymap.set("i", "<C-o>", "<ESC>o")
