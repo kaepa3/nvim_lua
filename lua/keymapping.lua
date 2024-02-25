@@ -17,7 +17,7 @@ vim.keymap.set("n", "<leader>r", "<cmd>lua vim.lsp.buf.rename()<CR>")
 
 --vsnip
 local keymap = vim.api.nvim_set_keymap
-options = { silent = true, expr = true }
+local options = { silent = true, expr = true }
 
 keymap('i', '<C-j>', "pumvisible() ? '<C-n>' : vsnip#jumpable(1)     ? '<Plug>(vsnip-jump-next)' : '<Tab>'", options)
 keymap('i', '<S-Tab>', "pumvisible() ? '<C-n>' : vsnip#jumpable(-1)    ? '<Plug>(vsnip-jump-prev)' : '<S-Tab>'", options)
@@ -27,7 +27,8 @@ keymap('s', '<S-Tab>', "vsnip#jumpable(-1)  ? '<Plug>(vsnip-jump-prev)' : '<Tab>
 --pum
 vim.keymap.set("i", "<C-n>", "<cmd>call pum#map#insert_relative(+1)<CR>")
 vim.keymap.set("i", "<C-p>", "<cmd>call pum#map#insert_relative(-1)<CR>")
-vim.keymap.set("i", "<C-o>", "<cmd>call pum#map#confirm()<CR>")
+vim.keymap.set("i", "<C-y>", "<cmd>call pum#map#confirm()<CR>")
+vim.keymap.set("i", "<C-e>", "<cmd>call pum#map#cancel()<CR>")
 
 --telescope
 vim.keymap.set("n", "<leader>t", "<cmd>Telescope<CR>")

@@ -6,7 +6,6 @@ vim.fn["ddc#custom#patch_global"]('sources', { 'around', "vim-lsp", "lsp", "vsni
 vim.fn["ddc#custom#patch_global"]('sourceOptions', {
     ["vsnip"] = {
         mark = '[s]',
-        --        forceCompletionPattern = {[['\.\w*|:\w*|->\w*']]},
     },
     ["around"] = {
         mark = '[a]',
@@ -18,7 +17,9 @@ vim.fn["ddc#custom#patch_global"]('sourceOptions', {
     },
     ["vim-lsp"] = {
         mark = '[vl]',
-        forceCompletionPattern = { [['\.\w*|:\w*|->\w*']] },
+        --forceCompletionPattern = { [['\.\w*|:\w*|->\w*']] },
+        forceCompletionPattern = { [[ '\.|:|->' ]] },
+        minAutoCompleteLength = 0,
     },
     _ = {
         matchers = { 'matcher_fuzzy' },
@@ -27,13 +28,6 @@ vim.fn["ddc#custom#patch_global"]('sourceOptions', {
     }
 })
 
-vim.fn["ddc#custom#patch_global"]('sourceParams', {
-    ["vim-lsp"] = {
-        snippetEngine = vim.fn["denops#callback#register"](function(body) vim.fn["vsnip#anonymous"](body) end),
-        enableResolveItem = true,
-        enableAdditionalTextEdit = true,
-    },
-})
 
 local capabilities = require("ddc_source_lsp").make_client_capabilities()
 require("lspconfig").denols.setup({
