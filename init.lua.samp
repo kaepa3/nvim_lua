@@ -1,0 +1,68 @@
+local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
+if not vim.loop.fs_stat(lazypath) then
+    vim.fn.system({
+        "git",
+        "clone",
+        "--filter=blob:none",
+        "https://github.com/folke/lazy.nvim.git",
+        "--branch=stable", -- latest stable release
+        lazypath,
+    })
+end
+vim.opt.rtp:prepend(lazypath)
+
+require("lazy").setup({
+    "vim-denops/denops.vim",
+    "Shougo/ddc.vim",
+    "vim-denops/denops.vim",
+    "Shougo/ddc-ui-native",
+    "Shougo/ddc-source-around",
+    "Shougo/ddc-source-lsp",
+    "tani/ddc-fuzzy",
+    "shun/ddc-source-vim-lsp",
+    "uga-rosa/ddc-source-vsnip",
+    "prabirshrestha/vim-lsp",
+    "neovim/nvim-lspconfig",
+    "mattn/vim-lsp-settings",
+    "hrsh7th/vim-vsnip"
+})
+
+local snippet_dir =  "~/.config/nvim/snippets"
+vim.g.vsnip_snippet_dir = snippet_dir
+
+vim.fn["ddc#custom#patch_global"]('ui', 'native')  
+vim.fn["ddc#custom#patch_global"]('sources', {'around', "vim-lsp" ,"vsnip"})
+vim.fn["ddc#custom#patch_global"]('sourceOptions', {
+    ["vsnip"] = {
+        mark = '[s]',
+        forceCompletionPattern = {[['\.\w*|:\w*|->\w*']]},
+    },
+    ["around"] = {
+        mark = '[a]',
+        forceCompletionPattern = {[['\.\w*|:\w*|->\w*']]},
+    },
+    ["vim-lsp"] = {
+        mark = '[vl]',
+        forceCompletionPattern = {[['\.\w*|:\w*|->\w*']]},
+    },
+  _ = {
+    matchers = {'matcher_fuzzy'},
+    sorters = {'sorter_fuzzy'},
+    converters = {'converter_fuzzy'},
+  }
+})
+
+vim.fn["ddc#custom#patch_global"]('sourceParams', {
+    ["vim-lsp"] = {
+            snippetEngine = vim.fn["denops#callback#register"](function(body) vim.fn["vsnip#anonymous"](body) end),
+            enableResolveItem = true,
+            enableAdditionalTextEdit = true,
+    },
+})
+
+local capabilities = require("ddc_source_lsp").make_client_capabilities()
+require("lspconfig").denols.setup({
+  capabilities = capabilities,
+})
+vim.fn["ddc#enable"]()
+
