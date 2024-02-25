@@ -35,6 +35,8 @@ require("lazy").setup({
     {
         "Shougo/ddc.vim",
         dependencies = {
+            "Shougo/pum.vim",
+            "Shougo/ddc-ui-pum",
             "Shougo/ddc-ui-native",
             "Shougo/ddc-source-around",
             "Shougo/ddc-source-lsp",

@@ -1,7 +1,7 @@
 local snippet_dir = "~/.config/nvim/snippets"
 vim.g.vsnip_snippet_dir = snippet_dir
 
-vim.fn["ddc#custom#patch_global"]('ui', 'native')
+vim.fn["ddc#custom#patch_global"]('ui', 'pum')
 vim.fn["ddc#custom#patch_global"]('sources', { 'around', "vim-lsp", "lsp", "vsnip" })
 vim.fn["ddc#custom#patch_global"]('sourceOptions', {
     ["vsnip"] = {
