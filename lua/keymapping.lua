@@ -1,8 +1,5 @@
 vim.g.mapleader = " "
 
-local lspinstaller = require("nvim-lsp-installer")
-
-lspinstaller.setup({})
 --vim
 vim.keymap.set("n", "gn", ":bn<CR>")
 vim.keymap.set("n", "gp", ":bp<CR>")
@@ -18,40 +15,21 @@ vim.keymap.set("n", "<leader>j", "<cmd>lua vim.lsp.buf.hover()<CR>")
 vim.keymap.set("n", "<C-k>", "<cmd>lua vim.lsp.buf.format({async=true})<CR>")
 vim.keymap.set("n", "<leader>r", "<cmd>lua vim.lsp.buf.rename()<CR>")
 
+--vsnip
+local keymap = vim.api.nvim_set_keymap
+options = { silent = true, expr = true }
+
+keymap('i', '<Tab>', "pumvisible() ? '<C-n>' : vsnip#jumpable(1)     ? '<Plug>(vsnip-jump-next)' : '<Tab>'", options)
+keymap('i', '<S-Tab>', "pumvisible() ? '<C-n>' : vsnip#jumpable(-1)    ? '<Plug>(vsnip-jump-prev)' : '<S-Tab>'", options)
+keymap('s', '<Tab>', "vsnip#jumpable(1)  ? '<Plug>(vsnip-jump-next)' : '<Tab>'", options)
+keymap('s', '<S-Tab>', "vsnip#jumpable(-1)  ? '<Plug>(vsnip-jump-prev)' : '<Tab>'", options)
+
 --telescope
 vim.keymap.set("n", "<leader>t", "<cmd>Telescope<CR>")
 vim.keymap.set("n", "<leader>f", "<cmd>Telescope find_files<CR>")
 
 --terminal
 vim.keymap.set("t", "<C-q>", "<C-\\><C-n><CR>")
-
--- luasnip
-vim.api.nvim_set_keymap(
-    "i",
-    "<C-j>",
-    'luasnip#expand_or_jumpable() ? "<Plug>luasnip-expand-or-jump" : ""',
-    { expr = true, silent = true }
-)
-vim.api.nvim_set_keymap(
-    "s",
-    "<C-j>",
-    'luasnip#expand_or_jumpable() ? "<Plug>luasnip-expand-or-jump"',
-    { expr = true, silent = true }
-)
--- vim.api.nvim_set_keymap("s", "<C-j>", "v:lua.expand()", { expr = true, silent = true })
-vim.api.nvim_set_keymap(
-    "i",
-    "<C-k>",
-    'luasnip#jumpable(-1) ? "<Plug>luasnip-jump-prev" : ""',
-    { expr = true, silent = true }
-)
-vim.api.nvim_set_keymap(
-    "s",
-    "<C-k>",
-    -- ":lua.backward()"
-    'luasnip#jumpable(-1) ? "<Plug>luasnip-jump-prev" : ""',
-    { expr = true, silent = true }
-)
 
 function go_org_imports(wait_ms)
     local params = vim.lsp.util.make_range_params()
@@ -69,3 +47,10 @@ function go_org_imports(wait_ms)
 end
 
 vim.cmd([[ autocmd BufWritePre *.go lua go_org_imports(1000) ]])
+
+-- Term and vertical
+vim.api.nvim_create_user_command("VTerm", function(opts)
+    vim.cmd("vsplit")
+    vim.cmd("wincmd l")
+    vim.cmd("terminal")
+end, {})

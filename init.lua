@@ -51,6 +51,3 @@ vim.cmd("set runtimepath^=~/dps-helloworld")
 -- インデント設定
 ---------------------->configvim
 require("keymapping")
-require("command")
-require("snip")
-require("lua-snip")
