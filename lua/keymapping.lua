@@ -14,6 +14,7 @@ vim.keymap.set("n", "<C-j>", "<cmd>lua vim.lsp.buf.definition()<CR>")
 vim.keymap.set("n", "<leader>j", "<cmd>lua vim.lsp.buf.hover()<CR>")
 vim.keymap.set("n", "<C-k>", "<cmd>lua vim.lsp.buf.format({async=true})<CR>")
 vim.keymap.set("n", "<leader>r", "<cmd>lua vim.lsp.buf.rename()<CR>")
+vim.keymap.set('n', '<leader>s', '<cmd>lua vim.lsp.buf.references()<CR>')
 
 --vsnip
 local keymap = vim.api.nvim_set_keymap

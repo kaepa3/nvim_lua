@@ -1,4 +1,3 @@
-
 local function show_macro_recording()
     local recording_register = vim.fn.reg_recording()
     if recording_register == "" then
@@ -34,6 +33,6 @@ require("lualine").setup({
                 fmt = show_macro_recording,
             },
         },
-        lualine_x = { lsp_names },
+        lualine_x = { 'fileformat', 'encoding', 'filetype', lsp_names },
     },
 })

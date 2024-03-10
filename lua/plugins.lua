@@ -13,6 +13,7 @@ vim.opt.rtp:prepend(lazypath)
 
 require("lazy").setup({
     --system
+    { "kaepa3/swpclear" },
     { "simeji/winresizer" },
     {
         "nvim-lualine/lualine.nvim",
@@ -29,7 +30,7 @@ require("lazy").setup({
     --lsp
     "vim-denops/denops.vim",
     "prabirshrestha/vim-lsp",
-    "neovim/nvim-lspconfig",
+    { "neovim/nvim-lspconfig" },
     "mattn/vim-lsp-settings",
     "hrsh7th/vim-vsnip",
     {
@@ -135,7 +136,24 @@ lspconfig.lua_ls.setup({
         },
     }
 })
-lspconfig.jsonls.setup {}
+
+lspconfig.efm.setup {
+    filetypes = {
+        "python"
+    },
+    init_options = { documentFormatting = true },
+    settings = {
+        rootMarkers = { ".git/" },
+        languages = {
+            python = {
+                {
+                    formatCommand = "black --fast -l 120 -",
+                    formatStdin = true,
+                }
+            }
+        }
+    }
+}
 
 require("p-conf/ddc")
 require("p-conf/tree")
