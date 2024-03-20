@@ -124,6 +124,7 @@ require("lazy").setup({
 local lspconfig = require('lspconfig')
 lspconfig.pyright.setup {}
 lspconfig.tsserver.setup {}
+lspconfig.ruby_ls.setup {}
 lspconfig.gopls.setup {}
 lspconfig.rust_analyzer.setup {}
 lspconfig.lua_ls.setup({
