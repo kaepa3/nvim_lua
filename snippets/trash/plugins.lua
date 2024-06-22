@@ -30,7 +30,7 @@ require("lazy").setup({
         end,
     },
     { "nvim-treesitter/nvim-treesitter-context" },
-    { "nvim-treesitter/nvim-treesitter", build = ":TSUpdate" },
+    { "nvim-treesitter/nvim-treesitter",        build = ":TSUpdate" },
     {
         "nvim-lualine/lualine.nvim",
         dependencies = { "kyazdani42/nvim-web-devicons" },
@@ -113,7 +113,7 @@ require("lazy").setup({
     },
     --markdown
     { "tyru/open-browser.vim", ft = "markdown", lazy = true },
-    { "previm/previm", ft = "markdown", lazy = true },
+    { "previm/previm",         ft = "markdown", lazy = true },
 })
 require("impatient")
 
@@ -131,7 +131,7 @@ end
 
 local lsp_names = function()
     local clients = {}
-    for _, client in ipairs(vim.lsp.get_active_clients({ bufnr = 0 })) do
+    for _, client in ipairs(vim.lsp.get_clients({ bufnr = 0 })) do
         if client.name == "null-ls" then
             local sources = {}
             for _, source in ipairs(require("null-ls.sources").get_available(vim.bo.filetype)) do
@@ -178,8 +178,8 @@ require("gitsigns").setup({
         untracked = { text = "┆" },
     },
     signcolumn = true, -- Toggle with `:Gitsigns toggle_signs`
-    numhl = false, -- Toggle with `:Gitsigns toggle_numhl`
-    linehl = false, -- Toggle with `:Gitsigns toggle_linehl`
+    numhl = false,     -- Toggle with `:Gitsigns toggle_numhl`
+    linehl = false,    -- Toggle with `:Gitsigns toggle_linehl`
     word_diff = false, -- Toggle with `:Gitsigns toggle_word_diff`
     watch_gitdir = {
         follow_files = true,
@@ -195,7 +195,7 @@ require("gitsigns").setup({
     current_line_blame_formatter = "<author>, <author_time:%Y-%m-%d> - <summary>",
     sign_priority = 6,
     update_debounce = 100,
-    status_formatter = nil, -- Use default
+    status_formatter = nil,  -- Use default
     max_file_length = 40000, -- Disable if file is longer than this (in lines)
     preview_config = {
         -- Options passed to nvim_open_win
