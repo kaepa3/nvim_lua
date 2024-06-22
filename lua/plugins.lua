@@ -46,6 +46,12 @@ require("lazy").setup({
             "uga-rosa/ddc-source-vsnip",
         },
     },
+    {
+        "williamboman/mason.nvim"
+    },
+    {
+        "williamboman/mason-lspconfig.nvim"
+    },
     -->lsp
     --cmd
     { "machakann/vim-sandwich" },
@@ -124,40 +130,6 @@ require("lazy").setup({
     -->disp
 })
 
-local lspconfig = require('lspconfig')
-lspconfig.pyright.setup {}
-lspconfig.tsserver.setup {}
-lspconfig.ruby_lsp.setup {}
-lspconfig.gopls.setup {}
-lspconfig.rust_analyzer.setup {}
-lspconfig.lua_ls.setup({
-    settings = {
-        Lua = {
-            diagnostics = {
-                -- Get the language server to recognize the `vim` global
-                globals = { 'vim' },
-            },
-        },
-    }
-})
-
-lspconfig.efm.setup {
-    filetypes = {
-        "python"
-    },
-    init_options = { documentFormatting = true },
-    settings = {
-        rootMarkers = { ".git/" },
-        languages = {
-            python = {
-                {
-                    formatCommand = "black --fast -l 120 -",
-                    formatStdin = true,
-                }
-            }
-        }
-    }
-}
 
 require("p-conf/ddc")
 require("p-conf/tree")
@@ -165,3 +137,4 @@ require("p-conf/lualine")
 require("p-conf/gitsigns")
 require("p-conf/notice")
 require("p-conf/style")
+require("p-conf/mason")
