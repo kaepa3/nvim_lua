@@ -58,7 +58,10 @@ require("lazy").setup({
     -->cmd
     --disp
     { "nvim-treesitter/nvim-treesitter-context" },
-    { "nvim-treesitter/nvim-treesitter",        build = ":TSUpdate" },
+    {
+        "nvim-treesitter/nvim-treesitter",
+        build = ":TSUpdate"
+    },
     {
         "nvim-lualine/lualine.nvim",
         dependencies = { "kyazdani42/nvim-web-devicons" },
@@ -124,7 +127,7 @@ require("lazy").setup({
 local lspconfig = require('lspconfig')
 lspconfig.pyright.setup {}
 lspconfig.tsserver.setup {}
-lspconfig.ruby_ls.setup {}
+lspconfig.ruby_lsp.setup {}
 lspconfig.gopls.setup {}
 lspconfig.rust_analyzer.setup {}
 lspconfig.lua_ls.setup({
