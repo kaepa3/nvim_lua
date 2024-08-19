@@ -14,12 +14,13 @@ vim.fn["ddc#custom#patch_global"]('sourceOptions', {
     ["lsp"] = {
         mark = '[l]',
         forceCompletionPattern = { [['\.\w*|:\w*|->\w*']] },
+        minAutoCompleteLength = 2,
     },
     ["vim-lsp"] = {
         mark = '[vl]',
         --forceCompletionPattern = { [['\.\w*|:\w*|->\w*']] },
         forceCompletionPattern = { [[ '\.|:|->' ]] },
-        minAutoCompleteLength = 0,
+        minAutoCompleteLength = 1,
     },
     _ = {
         matchers = { 'matcher_fuzzy' },

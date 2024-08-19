@@ -52,6 +52,10 @@ require("lazy").setup({
     {
         "williamboman/mason-lspconfig.nvim"
     },
+    -- amongst your other plugins
+    { 'akinsho/toggleterm.nvim', version = "*", config = true },
+    -- or
+    { 'akinsho/toggleterm.nvim', version = "*", opts = { --[[ things you want to change go here]] } },
     -->lsp
     --cmd
     { "machakann/vim-sandwich" },
@@ -60,6 +64,11 @@ require("lazy").setup({
         config = function()
             require("nvim-autopairs").setup()
         end,
+    },
+    {
+        "heavenshell/vim-jsdoc",
+        event = "VeryLazy",
+        ft = { "javascript", "typescript" },
     },
     -->cmd
     --disp
@@ -116,7 +125,7 @@ require("lazy").setup({
         dependencies = "kyazdani42/nvim-web-devicons",
         config = function()
             require("trouble").setup()
-        end,
+        end
     },
     --style
     {
@@ -128,6 +137,10 @@ require("lazy").setup({
     { "folke/tokyonight.nvim" },
     { "folke/styler.nvim" },
     -->disp
+    {
+        "github/copilot.vim",
+        lazy = false,
+    }
 })
 
 
@@ -138,3 +151,5 @@ require("p-conf/gitsigns")
 require("p-conf/notice")
 require("p-conf/style")
 require("p-conf/mason")
+
+require("toggleterm").setup {}
