@@ -8,6 +8,12 @@ vim.keymap.set("i", "jj", "<Esc>")
 vim.keymap.set("n", "<leader>n", ":tabnew<CR>")
 vim.keymap.set("n", "<C-n>", ":tabNext<CR>")
 
+-- ; : の入れ替え
+vim.keymap.set('n', ';', ':')
+vim.keymap.set('n', ':', ';')
+vim.keymap.set('i', ';', ':')
+vim.keymap.set('i', ':', ';')
+
 --general
 vim.keymap.set("i", "<C-o>", "<ESC>o")
 
