@@ -15,6 +15,7 @@ require("lazy").setup({
     --system
     { "kaepa3/swpclear" },
     { "simeji/winresizer" },
+    { "vim-jp/vimdoc-ja", },
     {
         "nvim-lualine/lualine.nvim",
         dependencies = { "kyazdani42/nvim-web-devicons" },
@@ -35,13 +36,13 @@ require("lazy").setup({
     "mattn/vim-lsp-settings",
     "hrsh7th/vim-vsnip",
     {
-        "Shougo/ddc.vim",
+        "shougo/ddc.vim",
         dependencies = {
-            "Shougo/pum.vim",
-            "Shougo/ddc-ui-pum",
-            "Shougo/ddc-ui-native",
-            "Shougo/ddc-source-around",
-            "Shougo/ddc-source-lsp",
+            "shougo/pum.vim",
+            "shougo/ddc-ui-pum",
+            "shougo/ddc-ui-native",
+            "shougo/ddc-source-around",
+            "shougo/ddc-source-lsp",
             "tani/ddc-fuzzy",
             "shun/ddc-source-vim-lsp",
             "uga-rosa/ddc-source-vsnip",
@@ -138,10 +139,6 @@ require("lazy").setup({
     { "folke/tokyonight.nvim" },
     { "folke/styler.nvim" },
     -->disp
-    {
-        "github/copilot.vim",
-        lazy = false,
-    }
 })
 
 

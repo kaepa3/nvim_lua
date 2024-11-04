@@ -13,12 +13,6 @@ vim.fn['skkeleton#config']({ globalDictionaries = { '~/.skk/SKK-JISYO.L' } })
 vim.keymap.set('i', '<leader>c', '<Plug>(skkeleton-enable)')
 vim.keymap.set('c', '<leader>c', '<Plug>(skkeleton-enable)')
 
--- ; : の入れ替え
-vim.keymap.set('n', ';', ':')
-vim.keymap.set('n', ':', ';')
-vim.keymap.set('i', ';', ':')
-vim.keymap.set('i', ':', ';')
-
 --general
 vim.keymap.set("i", "<C-o>", "<ESC>o")
 
@@ -39,10 +33,14 @@ keymap('s', '<C-j>', "vsnip#jumpable(1)  ? '<Plug>(vsnip-jump-next)' : '<Tab>'",
 keymap('s', '<S-Tab>', "vsnip#jumpable(-1)  ? '<Plug>(vsnip-jump-prev)' : '<Tab>'", options)
 
 --pum
+local pum_visible = vim.fn["pum#visible"]
 vim.keymap.set("i", "<C-n>", "<cmd>call pum#map#insert_relative(+1)<CR>")
 vim.keymap.set("i", "<C-p>", "<cmd>call pum#map#insert_relative(-1)<CR>")
 vim.keymap.set("i", "<C-y>", "<cmd>call pum#map#confirm()<CR>")
 vim.keymap.set("i", "<C-e>", "<cmd>call pum#map#cancel()<CR>")
+vim.keymap.set("i", "<CR>", function()
+    return pum_visible() and "<Cmd>call pum#map#confirm()<CR>" or "<CR>"
+end, { expr = true, silent = true })
 
 --telescope
 vim.keymap.set("n", "<leader>t", "<cmd>Telescope<CR>")

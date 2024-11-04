@@ -22,6 +22,9 @@ vim.o.wildmenu = true
 -- カレント行ハイライト
 vim.o.cursorline = true
 
+--  ヘルプ
+vim.opt.helplang = 'ja'
+
 -- マウス有効
 vim.cmd("set mouse=a")
 
