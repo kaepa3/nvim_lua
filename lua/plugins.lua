@@ -13,6 +13,10 @@ vim.opt.rtp:prepend(lazypath)
 
 require("lazy").setup({
     --system
+    {
+        "github/copilot.vim",
+        lazy = false,
+    },
     { "kaepa3/swpclear" },
     { "simeji/winresizer" },
     { "vim-jp/vimdoc-ja", },
