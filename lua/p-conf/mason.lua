@@ -1,5 +1,6 @@
 require("mason").setup()
 require("mason-lspconfig").setup()
+
 local nvim_lsp = require("lspconfig")
 
 local function create_opt(server_name)
@@ -14,6 +15,17 @@ local function create_opt(server_name)
         else
             return nil
         end
+    elseif server_name == "arduino_language_server" then
+        opts.cmd = {
+            --                     ~/go/bin/arduino-language-server",
+            "/Users/yamazakitakahiro/go/bin/arduino-language-server",
+            "-clangd", "/opt/homebrew/Cellar/llvm/19.1.7/bin/clangd",
+            "-cli", "/opt/homebrew/bin/arduino-cli",
+            "-cli-config", "~/Library/Arduino15/arduino-cli.yaml",
+        }
+        opts.autostart = true
+        opts.enable = true
+        opts.filetypes = { "arduino", "ino" }
     elseif server_name == "eslint" then
         if is_node_repo then
             opts.root_dir = node_root_dir

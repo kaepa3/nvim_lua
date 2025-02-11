@@ -32,7 +32,6 @@ require("lazy").setup({
     { "lewis6991/gitsigns.nvim" },
     { "tpope/vim-fugitive" },
     -->system
-    { "vim-skk/skkeleton" },
     --lsp
     "vim-denops/denops.vim",
     "prabirshrestha/vim-lsp",

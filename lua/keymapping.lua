@@ -8,10 +8,6 @@ vim.keymap.set("i", "jj", "<Esc>")
 vim.keymap.set("n", "<leader>n", ":tabnew<CR>")
 vim.keymap.set("n", "<C-n>", ":tabNext<CR>")
 
---skkeleton
-vim.fn['skkeleton#config']({ globalDictionaries = { '~/.skk/SKK-JISYO.L' } })
-vim.keymap.set('i', '<leader>c', '<Plug>(skkeleton-enable)')
-vim.keymap.set('c', '<leader>c', '<Plug>(skkeleton-enable)')
 
 --general
 vim.keymap.set("i", "<C-o>", "<ESC>o")
