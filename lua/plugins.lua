@@ -155,5 +155,4 @@ require("p-conf/gitsigns")
 require("p-conf/notice")
 require("p-conf/style")
 require("p-conf/mason")
-
 require("toggleterm").setup {}

@@ -71,11 +71,13 @@ local function create_opt(server_name)
     return opts
 end
 
-require("mason-lspconfig").setup_handlers({
-    function(server_name)
-        local opts = create_opt(server_name)
-        if opts ~= nil then
-            require("lspconfig")[server_name].setup(opts)
-        end
-    end,
+require("mason-lspconfig").setup({
+    handers={
+        function(server_name)
+            local opts = create_opt(server_name)
+            if opts ~= nil then
+                require("lspconfig")[server_name].setup(opts)
+            end
+        end,
+    }
 })
