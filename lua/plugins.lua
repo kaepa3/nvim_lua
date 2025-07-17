@@ -52,10 +52,13 @@ require("lazy").setup({
         },
     },
     {
-        "williamboman/mason.nvim"
+        "williamboman/mason.nvim",
     },
     {
-        "williamboman/mason-lspconfig.nvim"
+        "williamboman/mason-lspconfig.nvim",
+        dependencies = {
+            'williamboman/mason.nvim',
+        },
     },
     -- amongst your other plugins
     { 'akinsho/toggleterm.nvim', version = "*", config = true },

@@ -1,5 +1,11 @@
 require("mason").setup()
-require("mason-lspconfig").setup()
+require("mason-lspconfig").setup({
+    ensure_installed = {
+        'arduino_language_server',
+        -- We need to install clangd for arduino_language_server to work
+        'clangd'
+    }
+})
 
 local nvim_lsp = require("lspconfig")
 
