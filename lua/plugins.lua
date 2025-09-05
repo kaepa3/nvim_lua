@@ -142,6 +142,45 @@ require("lazy").setup({
     { "folke/tokyonight.nvim" },
     { "folke/styler.nvim" },
     -->disp
+    {
+        "scalameta/nvim-metals",
+        -- 必須の依存プラグイン
+        dependencies = {
+            "nvim-lua/plenary.nvim",
+            "mfussenegger/nvim-dap", -- デバッグ機能を使いたい場合
+        },
+        -- このプラグインは .scala, .sbt, .java, .kotlin ファイルで有効化
+        ft = { "scala", "sbt", "java", "kotlin" },
+        -- 初期化設定
+        config = function()
+            local metals = require("metals")
+            local metals_config = metals.bare_config()
+
+            -- ここで設定をカスタマイズできます
+            -- 例: on_attachに関数を設定
+            metals_config.on_attach = function(client, bufnr)
+                -- ここに定義ジャンプなどのキーマッピングを設定
+                vim.keymap.set('n', 'gd', vim.lsp.buf.definition, { buffer = bufnr })
+                vim.keymap.set('n', 'K', vim.lsp.buf.hover, { buffer = bufnr })
+                -- ... その他
+            end
+
+            -- Java/Kotlinでデバッグ機能を使うために必要
+            metals_config.init_options.enableFullptc = true
+            metals_config.init_options.enableStripMargin = true
+
+            -- nvim-dapとの連携
+            metals_config.dap = {
+                adapter_properties = {
+                    host = "127.0.0.1",
+                    port = 5005,
+                }
+            }
+
+            -- Metalsを起動
+            metals.initialize_or_attach(metals_config)
+        end,
+    }
 })
 
 
