@@ -34,8 +34,6 @@ vim.opt.list = true
 -- クリップボード
 vim.opt.clipboard = "unnamedplus"
 
-vim.cmd([[autocmd BufWritePre * lua vim.lsp.buf.format()]])
-
 -- ステータスカラム
 vim.cmd("set nu rnu")
 vim.cmd(
