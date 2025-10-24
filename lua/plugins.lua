@@ -34,9 +34,7 @@ require("lazy").setup({
     -->system
     --lsp
     "vim-denops/denops.vim",
-    "prabirshrestha/vim-lsp",
     { "neovim/nvim-lspconfig" },
-    "mattn/vim-lsp-settings",
     "hrsh7th/vim-vsnip",
     {
         "shougo/ddc.vim",
@@ -47,7 +45,6 @@ require("lazy").setup({
             "shougo/ddc-source-around",
             "shougo/ddc-source-lsp",
             "tani/ddc-fuzzy",
-            "shun/ddc-source-vim-lsp",
             "uga-rosa/ddc-source-vsnip",
         },
     },

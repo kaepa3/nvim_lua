@@ -1,37 +1,40 @@
 local snippet_dir = "~/.config/nvim/snippets"
 vim.g.vsnip_snippet_dir = snippet_dir
 
-vim.fn["ddc#custom#patch_global"]('ui', 'pum')
-vim.fn["ddc#custom#patch_global"]('sources', { 'around', "vim-lsp", "lsp", "vsnip" })
-vim.fn["ddc#custom#patch_global"]('sourceOptions', {
-    ["vsnip"] = {
-        mark = '[s]',
-    },
-    ["around"] = {
-        mark = '[a]',
-        forceCompletionPattern = { [['\.\w*|:\w*|->\w*']] },
-    },
-    ["lsp"] = {
-        mark = '[l]',
-        forceCompletionPattern = { [['\.\w*|:\w*|->\w*']] },
-        minAutoCompleteLength = 2,
-    },
-    ["vim-lsp"] = {
-        mark = '[vl]',
-        --forceCompletionPattern = { [['\.\w*|:\w*|->\w*']] },
-        forceCompletionPattern = { [[ '\.|:|->' ]] },
-        minAutoCompleteLength = 1,
-    },
-    _ = {
-        matchers = { 'matcher_fuzzy' },
-        sorters = { 'sorter_fuzzy' },
-        converters = { 'converter_fuzzy' },
-    }
-})
+local fn = vim.fn
 
+fn["ddc#custom#patch_global"]('ui', 'pum')
+fn["ddc#custom#patch_global"]('sources', { "lsp", 'around', "vsnip" })
+fn["ddc#custom#patch_global"] {
+    sourceOptions = {
+        _ = {
+            minAutoCompleteLength = 2,
+            matchers = { 'matcher_fuzzy' },
+            sorters = { 'sorter_fuzzy' },
+            converters = { 'converter_fuzzy' },
+        },
+        lsp = {
+            mark = '[lsp]',
+            forceCompletionPattern = [[\w\+\(\.\w*\|::\w*\|->\w*\)]],
+            minAutoCompleteLength = 1,
+            matchers = { 'matcher_fuzzy' },
+            sorters = { 'sorter_fuzzy' },
+            converters = { 'converter_fuzzy' },
+        },
+        around = {
+            mark = '[a]',
+        },
+        vsnip = {
+            mark = '[s]',
+        },
+    },
+    sourceParams = {
+        lsp = {
+            enableResolveItem = true,
+            enableAdditionalTextEdit = true,
+        },
+    },
+    autoCompleteEvents = { 'InsertEnter', 'TextChangedI', 'TextChangedP' },
+}
 
-local capabilities = require("ddc_source_lsp").make_client_capabilities()
-require("lspconfig").denols.setup({
-    capabilities = capabilities,
-})
 vim.fn["ddc#enable"]()

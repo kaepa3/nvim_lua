@@ -8,9 +8,10 @@ require("mason-lspconfig").setup({
 })
 
 local nvim_lsp = require("lspconfig")
+local capabilities = require('ddc_source_lsp').make_client_capabilities()
 
 local function create_opt(server_name)
-    local opts = {}
+    local opts = { capabilities = capabilities }
 
     local node_root_dir = nvim_lsp.util.root_pattern("package.json")
     local is_node_repo = node_root_dir(vim.api.nvim_buf_get_name(0)) ~= nil
@@ -65,6 +66,13 @@ local function create_opt(server_name)
         else
             return nil
         end
+    elseif server_name == "gopls" then
+        opts.settings = {
+            gopls = {
+                completeUnimported = true,
+                usePlaceholders = true,
+            },
+        }
     end
 
     opts.on_attach = on_attach
@@ -72,11 +80,11 @@ local function create_opt(server_name)
 end
 
 require("mason-lspconfig").setup({
-    handers={
+    handers = {
         function(server_name)
             local opts = create_opt(server_name)
             if opts ~= nil then
-                require("lspconfig")[server_name].setup(opts)
+                vim.lsp.config(server_name, opts)
             end
         end,
     }

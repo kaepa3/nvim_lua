@@ -45,10 +45,6 @@ vim.keymap.set("n", "<leader>f", "<cmd>Telescope find_files<CR>")
 --terminal
 vim.keymap.set("t", "<C-q>", "<C-\\><C-n><CR>")
 
--- go import
-vim.cmd(
-[[ autocmd BufWritePre *.go call execute(['LspCodeActionSync source.organizeImports', 'LspDocumentFormatSync'])]])
-
 -- Term and vertical
 vim.api.nvim_create_user_command("VTerm", function(opts)
     vim.cmd("vsplit")
