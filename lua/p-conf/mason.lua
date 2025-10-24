@@ -4,10 +4,9 @@ require("mason").setup({
         'clangd',
         'eslint',
         'lua_ls',
-        'denols',
+        'deno',
         'gopls',
-        'ts_ls',
-        'vue-arduino_language_server',
+        'arduino_language_server',
         'typescript-language-server',
     },
 })
