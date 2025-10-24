@@ -1,40 +1,38 @@
 require("plugins")
 
 --config--vim
-vim.o.virtualedit = block
-vim.o.number = true
-vim.o.laststatus = 2
+vim.opt.virtualedit = block
+vim.opt.number = true
+vim.opt.laststatus = 2
 
 --search
-vim.o.hlsearch = true
-vim.o.ignorecase = true
-vim.o.smartcase = true
+vim.opt.hlsearch = true
+vim.opt.ignorecase = true
+vim.opt.smartcase = true
 
-vim.o.expandtab = true
-vim.o.tabstop = 4
-vim.o.shiftwidth = 4
-vim.o.smartindent = true
-vim.o.title = true
-vim.o.showmatch = true
+vim.opt.expandtab = true
+vim.opt.tabstop = 4
+vim.opt.shiftwidth = 4
+vim.opt.smartindent = true
+vim.opt.title = true
+vim.opt.showmatch = true
 
-vim.o.wildmenu = true
+vim.opt.wildmenu = true
 
 -- カレント行ハイライト
-vim.o.cursorline = true
+vim.opt.cursorline = true
 
 --  ヘルプ
 vim.opt.helplang = 'ja'
 
 -- マウス有効
-vim.cmd("set mouse=a")
+vim.opt.mouse = 'a'
 
 -- theme
-vim.o.list = true
+vim.opt.list = true
 
 -- クリップボード
-vim.o.clipboard = "unnamedplus"
-
-vim.cmd([[autocmd BufWritePre * lua vim.lsp.buf.format()]])
+vim.opt.clipboard = "unnamedplus"
 
 -- ステータスカラム
 vim.cmd("set nu rnu")
@@ -51,8 +49,8 @@ end
 -- denops
 vim.cmd("set runtimepath^=~/dps-helloworld")
 -- 行末のスペースを可視化
---vim.o.listchars=tab:^\ ,trail:~
---vim.o.listchars=tab:»\ ,trail:-,extends:»,precedes:«,nbsp:%
+--vim.opt.listchars=tab:^\ ,trail:~
+--vim.opt.listchars=tab:»\ ,trail:-,extends:»,precedes:«,nbsp:%
 -- インデント設定
 ---------------------->configvim
 require("keymapping")
