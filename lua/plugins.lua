@@ -19,7 +19,7 @@ require("lazy").setup({
     },
     { "kaepa3/swpclear" },
     { "simeji/winresizer" },
-    { "vim-jp/vimdoc-ja", },
+    { "vim-jp/vimdoc-ja" },
     {
         "nvim-lualine/lualine.nvim",
         dependencies = { "kyazdani42/nvim-web-devicons" },
@@ -54,17 +54,22 @@ require("lazy").setup({
     {
         "williamboman/mason-lspconfig.nvim",
         dependencies = {
-            'williamboman/mason.nvim',
+            "williamboman/mason.nvim",
         },
     },
     {
-      'stevearc/conform.nvim',
-      opts = {},
+        "stevearc/conform.nvim",
+        opts = {},
     },
     -- amongst your other plugins
-    { 'akinsho/toggleterm.nvim', version = "*", config = true },
+    { "akinsho/toggleterm.nvim", version = "*", config = true },
     -- or
-    { 'akinsho/toggleterm.nvim', version = "*", opts = { --[[ things you want to change go here]] } },
+    {
+        "akinsho/toggleterm.nvim",
+        version = "*",
+        opts = { --[[ things you want to change go here]]
+        },
+    },
     -->lsp
     --cmd
     { "machakann/vim-sandwich" },
@@ -84,7 +89,7 @@ require("lazy").setup({
     { "nvim-treesitter/nvim-treesitter-context" },
     {
         "nvim-treesitter/nvim-treesitter",
-        build = ":TSUpdate"
+        build = ":TSUpdate",
     },
     {
         "nvim-lualine/lualine.nvim",
@@ -134,7 +139,7 @@ require("lazy").setup({
         dependencies = "kyazdani42/nvim-web-devicons",
         config = function()
             require("trouble").setup()
-        end
+        end,
     },
     --style
     {
@@ -164,8 +169,8 @@ require("lazy").setup({
             -- 例: on_attachに関数を設定
             metals_config.on_attach = function(client, bufnr)
                 -- ここに定義ジャンプなどのキーマッピングを設定
-                vim.keymap.set('n', 'gd', vim.lsp.buf.definition, { buffer = bufnr })
-                vim.keymap.set('n', 'K', vim.lsp.buf.hover, { buffer = bufnr })
+                vim.keymap.set("n", "gd", vim.lsp.buf.definition, { buffer = bufnr })
+                vim.keymap.set("n", "K", vim.lsp.buf.hover, { buffer = bufnr })
                 -- ... その他
             end
 
@@ -178,13 +183,13 @@ require("lazy").setup({
                 adapter_properties = {
                     host = "127.0.0.1",
                     port = 5005,
-                }
+                },
             }
 
             -- Metalsを起動
             metals.initialize_or_attach(metals_config)
         end,
-    }
+    },
 })
 
 require("p-conf/ddc")
@@ -194,4 +199,5 @@ require("p-conf/gitsigns")
 require("p-conf/notice")
 require("p-conf/style")
 require("p-conf/mason")
-require("toggleterm").setup {}
+require("p-conf/conform")
+require("toggleterm").setup({})
