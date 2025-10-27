@@ -23,10 +23,10 @@ vim.opt.wildmenu = true
 vim.opt.cursorline = true
 
 --  ヘルプ
-vim.opt.helplang = 'ja'
+vim.opt.helplang = "ja"
 
 -- マウス有効
-vim.opt.mouse = 'a'
+vim.opt.mouse = "a"
 
 -- theme
 vim.opt.list = true
@@ -40,8 +40,8 @@ vim.cmd(
     'let &stc=\'%s%#NonText#%{&nu?v:lnum:""}%=%{&rnu&&(v:lnum%2)?"\\ ".v:relnum:""}%#LineNr#%{&rnu&&!(v:lnum%2)?"\\ ".v:relnum:""}｜\''
 )
 
-if vim.fn.has('mac') == 1 then
-elseif vim.fn.has('win32') or vim.fn.has('win64') then
+if vim.fn.has("mac") == 1 then
+elseif vim.fn.has("win32") or vim.fn.has("win64") then
     print("Windows detected, loading win module")
     require("win")
 end

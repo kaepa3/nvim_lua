@@ -57,6 +57,10 @@ require("lazy").setup({
             'williamboman/mason.nvim',
         },
     },
+    {
+      'stevearc/conform.nvim',
+      opts = {},
+    },
     -- amongst your other plugins
     { 'akinsho/toggleterm.nvim', version = "*", config = true },
     -- or
@@ -182,7 +186,6 @@ require("lazy").setup({
         end,
     }
 })
-
 
 require("p-conf/ddc")
 require("p-conf/tree")
