@@ -1,19 +1,19 @@
 require("mason").setup({
     ensure_installed = {
-        'arduino_language_server',
-        'clangd',
-        'eslint',
-        'lua_ls',
-        'deno',
-        'gopls',
-        'arduino_language_server',
-        'typescript-language-server',
+        "arduino_language_server",
+        "clangd",
+        "eslint",
+        "lua_ls",
+        "deno",
+        "gopls",
+        "arduino_language_server",
+        "typescript-language-server",
     },
 })
 require("mason-lspconfig").setup()
 
 local nvim_lsp = require("lspconfig")
-local capabilities = require('ddc_source_lsp').make_client_capabilities()
+local capabilities = require("ddc_source_lsp").make_client_capabilities()
 
 local on_attach = function(client, bufnr)
     local capabilities = client.server_capabilities
@@ -37,7 +37,9 @@ local on_attach = function(client, bufnr)
                     -- これで goimports と同じ動作になる
                     vim.lsp.buf.code_action({
                         context = { diagnostics = {} },
-                        filter = function(a) return a.kind == 'source.organizeImports' end,
+                        filter = function(a)
+                            return a.kind == "source.organizeImports"
+                        end,
                         apply = true,
                         -- 同期的に実行するためのタイムアウト（重要）
                         timeout_ms = 1000,
@@ -48,8 +50,6 @@ local on_attach = function(client, bufnr)
     end
 end
 
-
-
 local function create_opt(server_name)
     local opts = { capabilities = capabilities }
 
@@ -58,8 +58,10 @@ local function create_opt(server_name)
 
     if server_name == "arduino_language_server" then
         opts.cmd = {
-            "-cli", "/opt/homebrew/bin/arduino-cli",
-            "-cli-config", "~/Library/Arduino15/arduino-cli.yaml",
+            "-cli",
+            "/opt/homebrew/bin/arduino-cli",
+            "-cli-config",
+            "~/Library/Arduino15/arduino-cli.yaml",
         }
         opts.autostart = true
         opts.enable = true
@@ -92,8 +94,6 @@ local function create_opt(server_name)
                     },
                 },
             }
-        else
-            return nil
         end
     elseif server_name == "gopls" then
         opts.settings = {
@@ -103,7 +103,7 @@ local function create_opt(server_name)
             },
         }
     elseif server_name == "ts_ls" then
-        local path = vim.fn.expand "$MASON/packages/vue-language-server/node_modules/@vue/language-server"
+        local path = vim.fn.expand("$MASON/packages/vue-language-server/node_modules/@vue/language-server")
         opts.init_options = {
             plugins = {
                 {
@@ -114,28 +114,30 @@ local function create_opt(server_name)
             },
         }
         opts.filetypes = {
-            "typescript", "javascript", "javascriptreact", "typescriptreact",
-            "vue",                      -- ★ 必須
+            "typescript",
+            "javascript",
+            "javascriptreact",
+            "typescriptreact",
+            "vue", -- ★ 必須
         }
-        opts.timeout = 10000            -- 起動が遅いことがあるため延長
+        opts.timeout = 10000 -- 起動が遅いことがあるため延長
     elseif server_name == "vue_ls" then -- (vue_ls ではなく volar)
-        opts.timeout = 10000            -- 起動が遅いことがあるため延長
+        opts.timeout = 10000 -- 起動が遅いことがあるため延長
     end
     opts.on_attach = on_attach
     return opts
 end
 
-
 -- 5. 「強制呼び出し」: lspconfig の設定名をリスト化
 local servers_to_configure = {
-    'arduino_language_server',
-    'clangd',
-    'eslint',
-    'lua_ls',
-    'denols',
-    'gopls',
-    'ts_ls',
-    'vue_ls',
+    "arduino_language_server",
+    "clangd",
+    "eslint",
+    "lua_ls",
+    "denols",
+    "gopls",
+    "ts_ls",
+    "vue_ls",
 }
 
 -- 6. 「強制呼び出し」: 手動でループして vim.lsp.config を呼ぶ
