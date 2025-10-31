@@ -67,8 +67,6 @@ local function create_opt(server_name)
     elseif server_name == "eslint" then
         if is_node_repo then
             opts.root_dir = node_root_dir
-        else
-            return nil
         end
     elseif server_name == "lua_ls" then
         opts.settings = {
