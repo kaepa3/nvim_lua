@@ -15,7 +15,7 @@ fn["ddc#custom#patch_global"] {
         },
         lsp = {
             mark = '[lsp]',
-            forceCompletionPattern = [[\w\+\(\.\w*\|::\w*\|->\w*\)]],
+            forceCompletionPattern = [[\.\w*|:\w*|->\w*]],
             minAutoCompleteLength = 1,
             matchers = { 'matcher_fuzzy' },
             sorters = { 'sorter_fuzzy' },

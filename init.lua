@@ -42,12 +42,12 @@ vim.cmd(
 
 if vim.fn.has("mac") == 1 then
 elseif vim.fn.has("win32") or vim.fn.has("win64") then
-    print("Windows detected, loading win module")
     require("win")
 end
 
 -- denops
 vim.cmd("set runtimepath^=~/dps-helloworld")
+
 -- 行末のスペースを可視化
 --vim.opt.listchars=tab:^\ ,trail:~
 --vim.opt.listchars=tab:»\ ,trail:-,extends:»,precedes:«,nbsp:%

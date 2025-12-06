@@ -26,5 +26,6 @@ require("conform").setup({
         yaml = { "prettier" },
         markdown = { "prettier" },
         lua = { "stylua" },
+        go = { "goimports", "gofumpt" }
     },
 })
