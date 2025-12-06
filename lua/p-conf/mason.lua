@@ -6,7 +6,6 @@ require("mason").setup({
         "lua_ls",
         "deno",
         "gopls",
-        "arduino_language_server",
         "typescript-language-server",
     },
 })
@@ -14,41 +13,6 @@ require("mason-lspconfig").setup()
 
 local nvim_lsp = require("lspconfig")
 local capabilities = require("ddc_source_lsp").make_client_capabilities()
-
-local on_attach = function(client, bufnr)
-    local capabilities = client.server_capabilities
-    if capabilities.codeActionProvider and capabilities.codeActionProvider.codeActionKinds then
-        local organizes_imports = false
-        for _, kind in ipairs(capabilities.codeActionProvider.codeActionKinds) do
-            if kind == "source.organizeImports" then
-                organizes_imports = true
-                break
-            end
-        end
-
-        if organizes_imports then
-            -- 保存前に "source.organizeImports" を実行するautocmd
-            local augroup = vim.api.nvim_create_augroup("LspOrganizeImportsOnSave", { clear = true })
-            vim.api.nvim_create_autocmd("BufWritePre", {
-                group = augroup,
-                buffer = bufnr,
-                callback = function()
-                    -- ここで "format" ではなく "code_action" を呼ぶ
-                    -- これで goimports と同じ動作になる
-                    vim.lsp.buf.code_action({
-                        context = { diagnostics = {} },
-                        filter = function(a)
-                            return a.kind == "source.organizeImports"
-                        end,
-                        apply = true,
-                        -- 同期的に実行するためのタイムアウト（重要）
-                        timeout_ms = 1000,
-                    })
-                end,
-            })
-        end
-    end
-end
 
 local function create_opt(server_name)
     local opts = { capabilities = capabilities }
@@ -124,7 +88,6 @@ local function create_opt(server_name)
     elseif server_name == "vue_ls" then -- (vue_ls ではなく volar)
         opts.timeout = 10000 -- 起動が遅いことがあるため延長
     end
-    opts.on_attach = on_attach
     return opts
 end
 

@@ -1,4 +1,4 @@
-" golang用
+"cpp用
 set noexpandtab
 set tabstop=2
 set shiftwidth=2
