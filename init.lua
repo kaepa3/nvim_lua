@@ -1,7 +1,8 @@
 require("plugins")
 
 --config--vim
-vim.opt.virtualedit = block
+vim.g.mapleader = " "
+vim.opt.virtualedit = "block"
 vim.opt.number = true
 vim.opt.laststatus = 2
 

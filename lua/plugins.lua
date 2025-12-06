@@ -21,10 +21,6 @@ require("lazy").setup({
     { "simeji/winresizer" },
     { "vim-jp/vimdoc-ja" },
     {
-        "nvim-lualine/lualine.nvim",
-        dependencies = { "kyazdani42/nvim-web-devicons" },
-    },
-    {
         "mattn/emmet-vim",
         ft = { "html", "typescript" },
         lazy = true,
@@ -63,13 +59,6 @@ require("lazy").setup({
     },
     -- amongst your other plugins
     { "akinsho/toggleterm.nvim", version = "*", config = true },
-    -- or
-    {
-        "akinsho/toggleterm.nvim",
-        version = "*",
-        opts = { --[[ things you want to change go here]]
-        },
-    },
     -->lsp
     --cmd
     { "machakann/vim-sandwich" },

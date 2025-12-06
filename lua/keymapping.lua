@@ -1,4 +1,3 @@
-vim.g.mapleader = " "
 
 --vim
 vim.keymap.set("n", "gn", ":bn<CR>")

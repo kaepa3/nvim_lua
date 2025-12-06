@@ -1,59 +1,27 @@
 {
   "Func": {
-    "prefix": [
-      "func:",
-      "func"
-    ],
-    "body": [
-      "func $1 () $2{",
-      "    $3",
-      "}"
-    ],
+    "prefix": ["func:", "func"],
+    "body": ["func $1 () $2{", "    $3", "}"],
     "description": "go main."
   },
   "Main": {
-    "prefix": [
-      "main:"
-    ],
-    "body": [
-      "package main",
-      "func main (){",
-      "    $0",
-      "}"
-    ],
+    "prefix": ["main:"],
+    "body": ["package main", "func main (){", "    $0", "}"],
     "description": "go main."
   },
   "For": {
-    "prefix": [
-      "for:"
-    ],
-    "body": [
-      "for i:=0; i< $1; i++{",
-      "    $0",
-      "}"
-    ],
+    "prefix": ["for:"],
+    "body": ["for i:=0; i< $1; i++{", "    $0", "}"],
     "description": "go for."
   },
   "Range": {
-    "prefix": [
-      "range:"
-    ],
-    "body": [
-      "for v:=range $1{",
-      "    $0",
-      "}"
-    ],
+    "prefix": ["range:"],
+    "body": ["for v:=range $1{", "    $0", "}"],
     "description": "go range."
   },
   "Err": {
-    "prefix": [
-      "err:"
-    ],
-    "body": [
-      "if err := nil {",
-      "    $0",
-      "}"
-    ],
+    "prefix": ["err:"],
+    "body": ["if err != nil {", "    $0", "}"],
     "description": "go range."
   }
 }
