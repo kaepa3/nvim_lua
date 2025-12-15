@@ -17,6 +17,17 @@ require("lazy").setup({
         "github/copilot.vim",
         lazy = false,
     },
+    {
+        "stevearc/oil.nvim",
+        ---@module 'oil'
+        ---@type oil.SetupOpts
+        opts = {},
+        -- Optional dependencies
+        dependencies = { { "nvim-mini/mini.icons", opts = {} } },
+        dependencies = { "nvim-tree/nvim-web-devicons" }, -- use if you prefer nvim-web-devicons
+        -- Lazy loading is not recommended because it is very tricky to make it work correctly in all situations.
+        lazy = false,
+    },
     { "kaepa3/swpclear" },
     { "simeji/winresizer" },
     { "vim-jp/vimdoc-ja" },
@@ -40,6 +51,8 @@ require("lazy").setup({
             "shougo/ddc-ui-native",
             "shougo/ddc-source-around",
             "shougo/ddc-source-lsp",
+            "Shougo/ddc-filter-sorter_rank",
+            "Shougo/ddc-matcher_head",
             "tani/ddc-fuzzy",
             "uga-rosa/ddc-source-vsnip",
         },
