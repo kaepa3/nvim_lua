@@ -50,10 +50,8 @@ require("lazy").setup({
         version = "*",
 
         ---@module 'blink.cmp'
-        ---@type blink.cmp.Config
         opts = {
             -- キーマップの設定: 'default' にすると一般的なキー操作になります
-            -- (C-spaceで表示、Enterで確定、Tabで選択など)
             keymap = {
                 preset = "default",
                 ["<CR>"] = { "accept", "fallback" },
@@ -88,11 +86,40 @@ require("lazy").setup({
         "stevearc/conform.nvim",
         opts = {},
     },
-    -- amongst your other plugins
-    { "akinsho/toggleterm.nvim", version = "*", config = true },
     -->lsp
+    {
+        "folke/snacks.nvim",
+        priority = 1000,
+        lazy = false,
+        ---@type snacks.Config
+        opts = {
+            -- Toggletermの代わり
+            terminal = { enabled = true },
+            -- ファイルのりネームや削除時の通知など
+            rename = { enabled = true },
+            -- GitのBlame表示など
+            git = { enabled = true },
+            -- 起動画面（Dashboard）もこれにできる
+            dashboard = { enabled = true },
+        },
+        keys = {
+            -- ターミナルをトグルするキー設定例
+            {
+                "<c-\\>",
+                function()
+                    Snacks.terminal()
+                end,
+                desc = "Toggle Terminal",
+            },
+        },
+    },
     --cmd
-    { "machakann/vim-sandwich" },
+    {
+        "kylechui/nvim-surround",
+        version = "*",
+        event = "VeryLazy",
+        config = true,
+    },
     {
         "windwp/nvim-autopairs",
         config = function()
@@ -100,9 +127,10 @@ require("lazy").setup({
         end,
     },
     {
-        "heavenshell/vim-jsdoc",
-        event = "VeryLazy",
-        ft = { "javascript", "typescript" },
+        "danymat/neogen",
+        dependencies = "nvim-treesitter/nvim-treesitter",
+        cmd = "Neogen",
+        config = true,
     },
     -->cmd
     --disp
@@ -169,7 +197,6 @@ require("lazy").setup({
     },
     { "EdenEast/nightfox.nvim" },
     { "folke/tokyonight.nvim" },
-    { "folke/styler.nvim" },
     -->disp
     {
         "scalameta/nvim-metals",
@@ -219,4 +246,3 @@ require("p-conf/notice")
 require("p-conf/style")
 require("p-conf/mason")
 require("p-conf/conform")
-require("toggleterm").setup({})

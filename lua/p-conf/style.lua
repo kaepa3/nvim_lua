@@ -14,11 +14,6 @@ require("tokyonight").setup({
             sidebars = "transparent",
             floats = "transparent",
         },
-    }
-})
-require("styler").setup({
-    themes = {
-        help = { colorscheme = "tokyonight" },
     },
 })
 --colorchg
