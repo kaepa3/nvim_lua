@@ -42,20 +42,38 @@ require("lazy").setup({
     --lsp
     "vim-denops/denops.vim",
     { "neovim/nvim-lspconfig" },
-    "hrsh7th/vim-vsnip",
     {
-        "shougo/ddc.vim",
-        dependencies = {
-            "shougo/pum.vim",
-            "shougo/ddc-ui-pum",
-            "shougo/ddc-ui-native",
-            "shougo/ddc-source-around",
-            "shougo/ddc-source-lsp",
-            "Shougo/ddc-filter-sorter_rank",
-            "Shougo/ddc-matcher_head",
-            "tani/ddc-fuzzy",
-            "uga-rosa/ddc-source-vsnip",
+        "saghen/blink.cmp",
+        dependencies = "rafamadriz/friendly-snippets",
+
+        -- release版を使うことで、ビルド済みバイナリをダウンロードします
+        version = "*",
+
+        ---@module 'blink.cmp'
+        ---@type blink.cmp.Config
+        opts = {
+            -- キーマップの設定: 'default' にすると一般的なキー操作になります
+            -- (C-spaceで表示、Enterで確定、Tabで選択など)
+            keymap = {
+                preset = "default",
+                ["<CR>"] = { "accept", "fallback" },
+            },
+
+            appearance = {
+                -- Nerd Fontアイコンを使う場合
+                use_nvim_cmp_as_default = true,
+                nerd_font_variant = "mono",
+            },
+
+            -- 補完ソースの定義
+            sources = {
+                default = { "lsp", "path", "snippets", "buffer" },
+            },
+
+            -- シグネチャヘルプ（関数の引数表示）もこれ一つで賄えます
+            signature = { enabled = true },
         },
+        opts_extend = { "sources.default" },
     },
     {
         "williamboman/mason.nvim",
@@ -194,7 +212,6 @@ require("lazy").setup({
     },
 })
 
-require("p-conf/ddc")
 require("p-conf/tree")
 require("p-conf/lualine")
 require("p-conf/gitsigns")

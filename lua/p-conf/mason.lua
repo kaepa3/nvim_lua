@@ -12,13 +12,12 @@ require("mason").setup({
 require("mason-lspconfig").setup()
 
 local nvim_lsp = require("lspconfig")
-local capabilities = require("ddc_source_lsp").make_client_capabilities()
+local capabilities = require("blink.cmp").get_lsp_capabilities()
 
 local function create_opt(server_name)
-    local opts = { capabilities = capabilities }
-
     local node_root_dir = nvim_lsp.util.root_pattern("package.json")
     local is_node_repo = node_root_dir(vim.api.nvim_buf_get_name(0)) ~= nil
+    local opts = { capabilities = capabilities }
 
     if server_name == "arduino_language_server" then
         opts.cmd = {
