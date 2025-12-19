@@ -31,8 +31,14 @@ keymap("s", "<C-j>", "vsnip#jumpable(1)  ? '<Plug>(vsnip-jump-next)' : '<Tab>'",
 keymap("s", "<S-Tab>", "vsnip#jumpable(-1)  ? '<Plug>(vsnip-jump-prev)' : '<Tab>'", options)
 
 --telescope
+local builtin = require("telescope.builtin")
 vim.keymap.set("n", "<leader>t", "<cmd>Telescope<CR>")
-vim.keymap.set("n", "<leader>f", "<cmd>Telescope find_files<CR>")
+vim.keymap.set("n", "<leader>fg", builtin.live_grep, {})
+vim.keymap.set("n", "<leader>ff", builtin.find_files, {})
+vim.keymap.set("n", "<leader>fw", builtin.grep_string, {})
+
+-- oil
+vim.keymap.set("n", "<leader>o", "<cmd>Oil<CR>", {})
 
 --terminal
 vim.keymap.set("t", "<C-q>", "<C-\\><C-n><CR>")
