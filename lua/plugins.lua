@@ -49,6 +49,8 @@ require("lazy").setup({
             keymap = {
                 preset = "default",
                 ["<CR>"] = { "accept", "fallback" },
+                ["<Tab>"] = { "snippet_forward", "fallback" },
+                ["<S-Tab>"] = { "snippet_backward", "fallback" },
             },
 
             appearance = {
@@ -232,6 +234,7 @@ require("lazy").setup({
         end,
     },
 })
+require("oil").setup()
 
 require("p-conf/tree")
 require("p-conf/lualine")

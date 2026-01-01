@@ -16,20 +16,6 @@ vim.keymap.set("n", "<C-k>", "<cmd>lua vim.lsp.buf.format({async=true})<CR>")
 vim.keymap.set("n", "<leader>r", "<cmd>lua vim.lsp.buf.rename()<CR>")
 vim.keymap.set("n", "<leader>s", "<cmd>lua vim.lsp.buf.references()<CR>")
 
---vsnip
-local keymap = vim.api.nvim_set_keymap
-local options = { silent = true, expr = true }
-
-keymap("i", "<C-j>", "pumvisible() ? '<C-n>' : vsnip#jumpable(1)     ? '<Plug>(vsnip-jump-next)' : '<Tab>'", options)
-keymap(
-    "i",
-    "<S-Tab>",
-    "pumvisible() ? '<C-n>' : vsnip#jumpable(-1)    ? '<Plug>(vsnip-jump-prev)' : '<S-Tab>'",
-    options
-)
-keymap("s", "<C-j>", "vsnip#jumpable(1)  ? '<Plug>(vsnip-jump-next)' : '<Tab>'", options)
-keymap("s", "<S-Tab>", "vsnip#jumpable(-1)  ? '<Plug>(vsnip-jump-prev)' : '<Tab>'", options)
-
 --telescope
 local builtin = require("telescope.builtin")
 vim.keymap.set("n", "<leader>t", "<cmd>Telescope<CR>")

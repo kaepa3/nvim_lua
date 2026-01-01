@@ -1,0 +1,8 @@
+{
+  "For": {
+    "prefix": ["for:"],
+    "body": ["for i:=0; i< $1; i++{", "    $0", "}"],
+    "description": "type for."
+  }
+}
+
