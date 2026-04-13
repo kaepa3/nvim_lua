@@ -31,7 +31,13 @@ require("lazy").setup({
         ft = { "html", "typescript" },
         lazy = true,
     },
-    { "lewis6991/gitsigns.nvim", event = "VeryLazy" },
+    {
+        "lewis6991/gitsigns.nvim",
+        event = "VeryLazy",
+        config = function()
+            require("p-conf/gitsigns")
+        end,
+    },
     { "tpope/vim-fugitive" },
     -->system
     --lsp
@@ -76,6 +82,9 @@ require("lazy").setup({
     },
     {
         "williamboman/mason.nvim",
+        config = function()
+            require("p-conf/mason")
+        end,
     },
     {
         "williamboman/mason-lspconfig.nvim",
@@ -86,6 +95,9 @@ require("lazy").setup({
     {
         "stevearc/conform.nvim",
         opts = {},
+        config = function()
+            require("p-conf/conform")
+        end,
     },
     -->lsp
     {
@@ -131,7 +143,9 @@ require("lazy").setup({
         "danymat/neogen",
         dependencies = "nvim-treesitter/nvim-treesitter",
         cmd = "Neogen",
-        config = true,
+        config = function()
+            require("p-conf/tree")
+        end,
         event = { "BufReadPost", "BufNewFile" }, -- ファイルを開いた時に読み込む
     },
     -->cmd
@@ -144,6 +158,9 @@ require("lazy").setup({
     {
         "nvim-lualine/lualine.nvim",
         dependencies = { "kyazdani42/nvim-web-devicons" },
+        config = function()
+            require("p-conf/lualine")
+        end,
     },
     {
         "folke/noice.nvim",
@@ -151,6 +168,9 @@ require("lazy").setup({
             "MunifTanjim/nui.nvim",
             "rcarriga/nvim-notify",
         },
+        config = function()
+            require("p-conf/notice")
+        end,
     },
     {
         "folke/flash.nvim",
@@ -326,10 +346,4 @@ require("lazy").setup({
 })
 require("oil").setup()
 
-require("p-conf/tree")
-require("p-conf/lualine")
-require("p-conf/gitsigns")
-require("p-conf/notice")
 require("p-conf/style")
-require("p-conf/mason")
-require("p-conf/conform")
