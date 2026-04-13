@@ -22,6 +22,9 @@ require("lazy").setup({
         dependencies = { { "nvim-mini/mini.icons", opts = {} } },
         event = "VeryLazy",
         lazy = false,
+        config = function()
+            require("oil").setup()
+        end,
     },
     { "kaepa3/swpclear" },
     { "simeji/winresizer" },
@@ -344,6 +347,4 @@ require("lazy").setup({
         },
     },
 })
-require("oil").setup()
-
 require("p-conf/style")
