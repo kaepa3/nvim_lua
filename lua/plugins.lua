@@ -221,7 +221,12 @@ require("lazy").setup({
         dependencies = { { "nvim-lua/plenary.nvim" } },
     },
     { "EdenEast/nightfox.nvim" },
-    { "folke/tokyonight.nvim" },
+    {
+        "folke/tokyonight.nvim",
+        config = function()
+            require("p-conf/style")
+        end,
+    },
     -->disp
     {
         "scalameta/nvim-metals",
@@ -347,4 +352,3 @@ require("lazy").setup({
         },
     },
 })
-require("p-conf/style")
