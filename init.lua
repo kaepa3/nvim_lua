@@ -1,10 +1,10 @@
 if vim.loader then
     vim.loader.enable()
 end
+vim.g.mapleader = " "
 require("plugins")
 
 --config--vim
-vim.g.mapleader = " "
 vim.opt.virtualedit = "block"
 vim.opt.number = true
 vim.opt.laststatus = 2

@@ -14,7 +14,7 @@ require("mason-lspconfig").setup()
 local nvim_lsp = require("lspconfig")
 local capabilities = require("blink.cmp").get_lsp_capabilities()
 
-local function create_opt(server_name)
+local function setup_server(server_name)
     local node_root_dir = nvim_lsp.util.root_pattern("package.json")
     local is_node_repo = node_root_dir(vim.api.nvim_buf_get_name(0)) ~= nil
     local opts = { capabilities = capabilities }
@@ -87,7 +87,8 @@ local function create_opt(server_name)
     elseif server_name == "vue_ls" then -- (vue_ls ではなく volar)
         opts.timeout = 10000 -- 起動が遅いことがあるため延長
     end
-    return opts
+    -- 必要なサーバーだけを明示的にセットアップ
+    nvim_lsp[server_name].setup(opts)
 end
 
 -- 5. 「強制呼び出し」: lspconfig の設定名をリスト化
@@ -102,13 +103,12 @@ local servers_to_configure = {
     "vue_ls",
 }
 
--- 6. 「強制呼び出し」: 手動でループして vim.lsp.config を呼ぶ
-for _, server_name in ipairs(servers_to_configure) do
-    local opts = create_opt(server_name)
-
-    if opts ~= nil then
-        vim.lsp.config(server_name, opts)
-    else
-        vim.notify(server_name .. " の設定は nil のためスキップ", vim.log.levels.WARN)
-    end
-end
+-- mason-lspconfig の自動セットアップ機構に乗せる
+require("mason-lspconfig").setup({
+    handlers = {
+        -- すべての指定サーバーに自動で上記の設定を適用（必要な時だけ動く）
+        function(server_name)
+            setup_server(server_name)
+        end,
+    },
+})
